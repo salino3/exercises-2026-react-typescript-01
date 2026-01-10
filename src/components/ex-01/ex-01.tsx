@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "./exercise01.styles.scss";
 
 interface PropsPost {
   userId: number;
@@ -10,32 +9,38 @@ interface PropsPost {
 
 export function PostManager() {
   const [posts, setPosts] = useState<PropsPost[]>([]);
-  const [filtered, setFiltered] = useState<PropsPost[]>([]);
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [errorAPIPosts, setErrorAPIPost] = useState<string>("");
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((data: PropsPost[]) => {
         setPosts(data);
+        if (errorAPIPosts) {
+          setErrorAPIPost("");
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error: ", err);
+        setErrorAPIPost("Sorry there is an error, try again.");
         setLoading(false);
       });
   }, []);
 
-  useEffect(() => {
-    setFiltered(
-      posts.filter((p: PropsPost) =>
-        p.title.toLowerCase().includes(search.toLowerCase())
-      )
-    );
-  }, [posts, search]);
+  const filtered: PropsPost[] = posts.filter((p: PropsPost) =>
+    p.title.toLowerCase().includes(search.toLowerCase())
+  );
 
-  const handleChangeSearch = (e: any) => {
+  const handleChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
   if (loading) return <p>Loading...</p>;
+
+  if (errorAPIPosts) return <p>{errorAPIPosts}</p>;
 
   return (
     <div>
