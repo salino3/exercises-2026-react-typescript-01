@@ -10,6 +10,7 @@ interface PropsPost {
 
 export function PostManager() {
   const [posts, setPosts] = useState<PropsPost[]>([]);
+  const [filtered, setFiltered] = useState<PropsPost[]>([]);
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -22,10 +23,17 @@ export function PostManager() {
       });
   }, []);
 
-  // Filter logic
-  const filtered = posts.filter((p: PropsPost) =>
-    p.title.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    setFiltered(
+      posts.filter((p: PropsPost) =>
+        p.title.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [posts, search]);
+
+  const handleChangeSearch = (e: any) => {
+    setSearch(e.target.value);
+  };
 
   if (loading) return <p>Loading...</p>;
 
@@ -33,7 +41,7 @@ export function PostManager() {
     <div>
       <input
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleChangeSearch}
         placeholder="Search posts..."
       />
 
