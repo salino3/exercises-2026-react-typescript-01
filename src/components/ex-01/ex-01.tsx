@@ -44,7 +44,14 @@ export function PostManager() {
         onChange={handleChangeSearch}
         placeholder="Search posts..."
       />
-
+      &nbsp;
+      <button
+        onClick={() => {
+          setSearch("");
+        }}
+      >
+        Clear
+      </button>
       <div>
         {filtered.map((post: PropsPost) => (
           <div
