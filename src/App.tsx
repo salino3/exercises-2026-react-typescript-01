@@ -1,12 +1,12 @@
-import { Exercise01 } from "./components";
+import { PostManager } from "./components";
 import "./App.scss";
 
 function App() {
   return (
     <div className="main">
-      <details>
+      <details open>
         <summary>Exercise 01 TS</summary>
-        <Exercise01 />
+        <PostManager />
       </details>
     </div>
   );
