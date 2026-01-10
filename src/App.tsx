@@ -1,12 +1,17 @@
-import { PostManager } from "./components";
+import { PostManager, TaskTracker } from "./components";
 import "./App.scss";
 
 function App() {
   return (
     <div className="main">
-      <details open>
+      <details>
         <summary>Exercise 01 TS</summary>
         <PostManager />
+      </details>
+      <br />
+      <details open>
+        <summary>Exercise 01 TS</summary>
+        <TaskTracker />
       </details>
     </div>
   );
