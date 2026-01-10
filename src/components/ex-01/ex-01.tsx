@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-interface PropsPost {
+interface PostItem {
   userId: number;
   id: number;
   title: string;
@@ -8,7 +8,7 @@ interface PropsPost {
 }
 
 export function PostManager() {
-  const [posts, setPosts] = useState<PropsPost[]>([]);
+  const [posts, setPosts] = useState<PostItem[]>([]);
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [errorAPIPosts, setErrorAPIPost] = useState<string>("");
@@ -16,7 +16,7 @@ export function PostManager() {
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
-      .then((data: PropsPost[]) => {
+      .then((data: PostItem[]) => {
         setPosts(data);
         if (errorAPIPosts) {
           setErrorAPIPost("");
@@ -30,7 +30,7 @@ export function PostManager() {
       });
   }, []);
 
-  const filtered: PropsPost[] = posts.filter((p: PropsPost) =>
+  const filtered: PostItem[] = posts.filter((p: PostItem) =>
     p.title.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -58,7 +58,7 @@ export function PostManager() {
         Clear
       </button>
       <div>
-        {filtered.map((post: PropsPost) => (
+        {filtered.map((post: PostItem) => (
           <div
             key={post.id}
             style={{

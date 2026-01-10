@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-interface PropsTask {
+interface TaskItem {
   id: number;
   text: string;
   completed: boolean;
 }
 
 export const TaskTracker: React.FC = () => {
-  const [tasks, setTasks] = useState<PropsTask[]>([
+  const [tasks, setTasks] = useState<TaskItem[]>([
     { id: 1, text: "Learn TypeScript", completed: false },
     { id: 2, text: "Practice React Hooks", completed: false },
     { id: 3, text: "Win the interview", completed: false },
@@ -15,23 +15,30 @@ export const TaskTracker: React.FC = () => {
 
   const toggleTask = (id: number) => {
     setTasks(
-      tasks.map((t: PropsTask) =>
+      tasks.map((t: TaskItem) =>
         t.id === id ? { ...t, completed: !t.completed } : t
       )
     );
   };
 
   const deleteTask = (id: number) => {
-    setTasks(tasks.filter((t: PropsTask) => t.id !== id));
+    setTasks(tasks.filter((t: TaskItem) => t.id !== id));
   };
 
   return (
     <div style={{ padding: "20px" }}>
       <h2>Task Tracker</h2>
-      {/* TODO: Add Progress Message here */}
+      <div className="completed" style={Completed()}>
+        <span>Completed:</span>
+        <span>
+          {tasks.every((todo: TaskItem) => Boolean(todo.completed))
+            ? "All tasks done! 🎉"
+            : tasks.filter((todo: TaskItem) => !!todo.completed).length}
+        </span>
+      </div>
 
       <div style={{ marginTop: "20px" }}>
-        {tasks.map((task: PropsTask) => (
+        {tasks.map((task: TaskItem) => (
           <div key={task.id} style={CSS(task.completed)}>
             <span>{task.text}</span>
             <button onClick={() => toggleTask(task.id)}>
@@ -50,12 +57,22 @@ export const TaskTracker: React.FC = () => {
   );
 };
 
-const CSS = (completed: boolean) => {
+const CSS = (completed: boolean): React.CSSProperties => {
   return {
     display: "flex",
     alignItems: "center",
     gap: "10px",
     marginBottom: "10px",
     textDecoration: completed ? "line-through" : "none",
+  };
+};
+
+const Completed = (): React.CSSProperties => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "1rem",
   };
 };
