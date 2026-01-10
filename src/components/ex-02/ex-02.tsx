@@ -25,16 +25,15 @@ export const TaskTracker: React.FC = () => {
     setTasks(tasks.filter((t: TaskItem) => t.id !== id));
   };
 
+  const completedCount = tasks.filter((t) => t.completed).length;
+  const isAllDone = tasks.length > 0 && completedCount === tasks.length;
+
   return (
     <div style={{ padding: "20px" }}>
       <h2>Task Tracker</h2>
       <div className="completed" style={Completed()}>
         <span>Completed:</span>
-        <span>
-          {tasks.every((todo: TaskItem) => Boolean(todo.completed))
-            ? "All tasks done! 🎉"
-            : tasks.filter((todo: TaskItem) => !!todo.completed).length}
-        </span>
+        <span>{isAllDone ? "All tasks done! 🎉" : completedCount}</span>
       </div>
 
       <div style={{ marginTop: "20px" }}>
