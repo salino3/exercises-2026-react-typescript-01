@@ -4,12 +4,12 @@ import "./App.scss";
 function App() {
   return (
     <div className="main">
-      <details>
+      <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
       </details>
       <br />
-      <details open>
+      <details>
         <summary>Exercise 01 TS</summary>
         <TaskTracker />
       </details>
