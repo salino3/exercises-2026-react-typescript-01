@@ -1,10 +1,18 @@
 import { CharacterVault, PostManager, TaskTracker } from "./components";
+import { Greeting } from "./components/greeting/greeting.component";
+import { Counter } from "./components/counter/counter.component";
+import { UserProfile } from "./components/user-profile/user-profile.component";
+import { ListProducts } from "./components/list-products/list-products.component";
 import "./App.scss";
 
 function App() {
   return (
     <div className="main">
-      <details open>
+      <Greeting name="" />
+      {/* <Counter />
+      <UserProfile userId="9" /> */}
+      <ListProducts />
+      {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
       </details>
@@ -17,7 +25,7 @@ function App() {
       <details>
         <summary>Exercise 03 TS</summary>
         <CharacterVault />
-      </details>
+      </details> */}
     </div>
   );
 }
