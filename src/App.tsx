@@ -3,6 +3,7 @@ import { Greeting } from "./components/greeting/greeting.component";
 import { Counter } from "./components/counter/counter.component";
 import { UserProfile } from "./components/user-profile/user-profile.component";
 import { ListProducts } from "./components/list-products/list-products.component";
+import { Tasks } from "./components/tasks/tasks.component";
 import "./App.scss";
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
       <Greeting name="" />
       {/* <Counter />
       <UserProfile userId="9" /> */}
-      <ListProducts />
+      {/* <ListProducts /> */}
+      <Tasks />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
