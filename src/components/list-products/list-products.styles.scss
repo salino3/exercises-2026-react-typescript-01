@@ -1,0 +1,26 @@
+.rootListData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  #formListData {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    gap: 1rem;
+
+    label {
+      display: flex;
+      align-items: start;
+    }
+  }
+  .containerListData {
+    border-top: solid gray;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
