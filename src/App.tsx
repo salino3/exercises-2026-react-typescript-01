@@ -3,7 +3,7 @@ import { Greeting } from "./components/greeting/greeting.component";
 import { Counter } from "./components/counter/counter.component";
 import { UserProfile } from "./components/user-profile/user-profile.component";
 import { ListProducts } from "./components/list-products/list-products.component";
-import { Tasks } from "./components/tasks/tasks.component";
+import { TaskManager } from "./components/tasks/tasks.component";
 import "./App.scss";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
       {/* <Counter />
       <UserProfile userId="9" /> */}
       {/* <ListProducts /> */}
-      <Tasks />
+      <TaskManager />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />

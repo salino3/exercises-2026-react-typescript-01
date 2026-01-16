@@ -35,7 +35,7 @@ export const fetchTasks = (): Promise<Task[]> => {
   });
 };
 
-export const Tasks: React.FC = () => {
+export const TaskManager: React.FC = () => {
   const [taskList, setTaskList] = useState<Task[]>([]);
 
   useEffect(() => {
