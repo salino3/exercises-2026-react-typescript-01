@@ -24,6 +24,8 @@ describe("Counter", () => {
 
     // Check the update
     expect(counterValue).toHaveTextContent("2");
+
+    await userEvent.type(button, "2");
   });
   // it()
 });
