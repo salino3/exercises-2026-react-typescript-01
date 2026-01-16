@@ -9,7 +9,7 @@ function App() {
     <div className="main">
       <Greeting name="" />
       <Counter />
-      <UserProfile userId="1" />
+      <UserProfile userId="9" />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
