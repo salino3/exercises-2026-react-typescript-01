@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-interface AddressProps {
+export interface AddressProps {
   street: string;
   suite: string;
   city: string;
@@ -11,7 +11,7 @@ interface AddressProps {
   };
 }
 
-interface UserProps {
+export interface UserProps {
   id: number | null;
   name: string;
   username: string;
