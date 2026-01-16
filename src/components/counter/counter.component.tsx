@@ -1,17 +1,16 @@
 import { useState } from "react";
+import { useCounter } from "../../hooks/use-counter";
 
 export function Counter() {
-  const [count, setCounter] = useState<number>(0);
+  const { count, decrement, increment } = useCounter();
 
   return (
     <div>
       <p data-testid="counter_value">{count}</p>
-      <button
-        id="IDButtonCounter"
-        onClick={() => setCounter((prev: number) => prev + 1)}
-      >
+      <button id="IDButtonCounter" onClick={() => increment()}>
         Increment
       </button>
+      <button onClick={() => decrement()}>Decrement</button>
     </div>
   );
 }
