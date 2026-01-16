@@ -44,8 +44,11 @@ export const ListProducts: React.FC = () => {
 
   return (
     <div className="rootListData">
-      <form onSubmit={handleSubmit}>
+      <form id="formListData" onSubmit={handleSubmit}>
+        <label htmlFor="nameID">Name Product</label>
         <input
+          name="name"
+          id="nameID"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

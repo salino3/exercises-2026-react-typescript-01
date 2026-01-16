@@ -14,6 +14,10 @@
       display: flex;
       align-items: start;
     }
+
+    button {
+      cursor: pointer;
+    }
   }
   .containerListData {
     border-top: solid gray;
