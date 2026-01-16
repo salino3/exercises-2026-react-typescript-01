@@ -30,71 +30,39 @@ const API_DATA: Product[] = [
 ];
 
 export const ListProducts: React.FC = () => {
-  const [listValue, setListvalue] = useState<Product[]>([]);
-  const [textValue, setTextvalue] = useState<string>("");
-  const [errorSearch, setErrorSearch] = useState<string>("");
-  const [flag, setFlag] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [appliedSearch, setAppliedSearch] = useState<string>("");
 
-  //
-  useEffect(() => {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(
-          API_DATA.filter((item: Product) =>
-            item.name.toLowerCase().includes(textValue.toLowerCase())
-          )
-        );
-      }, 500);
-    });
+  const filteredProducts = API_DATA.filter((product) =>
+    product.name.toLowerCase().includes(appliedSearch.toLowerCase())
+  );
 
-    promise.then((data: Promise<unknown | Product[]>) => setListvalue(data));
-  }, [flag]);
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorSearch(textValue);
-    setFlag((prev: boolean) => !prev);
+    setAppliedSearch(searchTerm);
   };
 
   return (
     <div className="rootListData">
-      <form onSubmit={handleSubmit} id="formListData">
-        <label htmlFor="name">Name Product</label>
+      <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          id="name"
-          name="name"
-          value={textValue}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setTextvalue(e.target.value)
-          }
-          placeholder="Text name product"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <button type="submit">Search</button>
-        <button
-          type="reset"
-          onClick={() => {
-            setTextvalue("");
-            setFlag((prev: boolean) => !prev);
-          }}
-        >
-          Reset
-        </button>
       </form>
+
       <div className="containerListData">
-        {listValue && listValue.length > 0
-          ? listValue.map((item: Product) => (
+        {filteredProducts.length > 0
+          ? filteredProducts.map((item) => (
               <span
-                style={{
-                  color: item.inStock ? "" : "red",
-                }}
+                key={item.id}
+                style={{ color: item.inStock ? "white" : "red" }}
               >
                 {item.name} {!item.inStock && "(Sold Out)"}
               </span>
             ))
-          : errorSearch && listValue.length === 0
-          ? `No products found for "${errorSearch}"`
-          : null}
+          : appliedSearch && <p>No products found for "{appliedSearch}"</p>}
       </div>
     </div>
   );
