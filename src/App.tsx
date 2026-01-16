@@ -1,10 +1,12 @@
 import { CharacterVault, PostManager, TaskTracker } from "./components";
+import { Greeting } from "./components/greeting/greeting.component";
 import "./App.scss";
 
 function App() {
   return (
     <div className="main">
-      <details open>
+      <Greeting name="" />
+      {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
       </details>
@@ -17,7 +19,7 @@ function App() {
       <details>
         <summary>Exercise 03 TS</summary>
         <CharacterVault />
-      </details>
+      </details> */}
     </div>
   );
 }
