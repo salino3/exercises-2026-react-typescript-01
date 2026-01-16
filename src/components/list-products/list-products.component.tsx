@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./list-products.styles.scss";
 
 interface Product {
@@ -33,8 +33,12 @@ export const ListProducts: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [appliedSearch, setAppliedSearch] = useState<string>("");
 
-  const filteredProducts = API_DATA.filter((product) =>
-    product.name.toLowerCase().includes(appliedSearch.toLowerCase())
+  const filteredProducts = useMemo(
+    () =>
+      API_DATA.filter((product) =>
+        product.name.toLowerCase().includes(appliedSearch.toLowerCase())
+      ),
+    [appliedSearch]
   );
 
   const handleSubmit = (e: React.FormEvent) => {
