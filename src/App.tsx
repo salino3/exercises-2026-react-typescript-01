@@ -1,11 +1,13 @@
 import { CharacterVault, PostManager, TaskTracker } from "./components";
 import { Greeting } from "./components/greeting/greeting.component";
+import { Counter } from "./components/counter/counter.component";
 import "./App.scss";
 
 function App() {
   return (
     <div className="main">
       <Greeting name="" />
+      <Counter />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
