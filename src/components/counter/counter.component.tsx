@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCounter } from "../../hooks/use-counter";
+import { useCounter } from "../../hooks";
 
 export function Counter() {
   const { count, decrement, increment } = useCounter();
@@ -10,6 +10,7 @@ export function Counter() {
       <button id="IDButtonCounter" onClick={() => increment()}>
         Increment
       </button>
+      &nbsp;
       <button onClick={() => decrement()}>Decrement</button>
     </div>
   );
