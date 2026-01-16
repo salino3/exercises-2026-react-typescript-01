@@ -1,8 +1,6 @@
-import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { UserProfile } from "./user-profile.component";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/vitest";
 
 describe("UserProfile", () => {
