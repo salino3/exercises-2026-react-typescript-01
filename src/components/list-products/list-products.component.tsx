@@ -51,12 +51,15 @@ export const ListProducts: React.FC = () => {
       <form id="formListData" onSubmit={handleSubmit}>
         <label htmlFor="nameID">Name Product</label>
         <input
+          data-testid="inputFormListData"
           name="name"
           id="nameID"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <button data-testid="btnSearch" type="submit">
+          Search
+        </button>
       </form>
 
       <div className="containerListData">
