@@ -27,5 +27,4 @@ describe("Counter", () => {
 
     await userEvent.type(button, "2");
   });
-  // it()
 });
