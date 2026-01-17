@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+export const calculateDiscount = (price: number) => price * 0.1;
+
 export const SimpleCounter: React.FC = () => {
   const [count, setCount] = useState<number>(0);
 
