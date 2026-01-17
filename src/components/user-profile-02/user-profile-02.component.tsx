@@ -40,6 +40,7 @@ export const UserProfile02: React.FC = () => {
 
       {!user.isAdmin ? (
         <button
+          data-testid="btn-event"
           onClick={() =>
             setUser((prev: UserData | null) => {
               if (!prev) return null;

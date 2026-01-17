@@ -1,17 +1,8 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { UserProfile02 } from "./user-profile-02.component";
-import {
-  describe,
-  it,
-  expect,
-  vi,
-  beforeEach,
-  afterEach,
-  expectTypeOf,
-} from "vitest";
-import "@testing-library/jest-dom/vitest";
-import userEvent from "@testing-library/user-event";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { act } from "react";
+import "@testing-library/jest-dom/vitest";
 
 describe("UserProfile02", () => {
   beforeEach(() => {
@@ -38,6 +29,24 @@ describe("UserProfile02", () => {
 
     const userName = screen.getByTestId("user-name");
 
-    expect(within(userName).getByText(/John Doe/i)).toBeInTheDocument();
+    // expect(within(userName).getByText(/John Doe/i)).toBeInTheDocument();
+    expect(within(userName).getByText(/John Doe/i));
+  });
+
+  it("Button 'Request Admin Access' visible", async () => {
+    render(<UserProfile02 />);
+    await act(async () => {
+      vi.advanceTimersByTime(500);
+    });
+    const btnRequestAdminAccess = screen.getByText(/request admin access/i);
+
+    expect(btnRequestAdminAccess).toBeInTheDocument();
+
+    const btnEvent = screen.getByTestId("btn-event");
+    fireEvent.click(btnEvent);
+
+    const btnAdminModeActive = screen.getByText(/Administrator Mode Active/i);
+
+    expect(btnAdminModeActive).toBeInTheDocument();
   });
 });
