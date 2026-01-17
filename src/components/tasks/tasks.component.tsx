@@ -93,7 +93,11 @@ export const TaskManager: React.FC = () => {
           <tbody>
             {taskList && taskList?.length > 0 ? (
               taskList.map((task: Task) => (
-                <tr key={task?.id} className="thBodyTaskList">
+                <tr
+                  data-testid={`trTable-${task.id}`}
+                  key={task?.id}
+                  className="thBodyTaskList"
+                >
                   <th scope="row">{task.id}</th>
                   <td
                     style={{

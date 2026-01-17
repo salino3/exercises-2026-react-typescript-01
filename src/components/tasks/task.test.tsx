@@ -1,5 +1,6 @@
-import { render, screen, act, fireEvent } from "@testing-library/react";
+import { render, screen, act, fireEvent, within } from "@testing-library/react";
 import { TaskManager } from "./tasks.component";
+import * as TaskComponent from "./tasks.component";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
@@ -47,5 +48,29 @@ describe("TaskManager Interaction", () => {
     fireEvent.click(statusButton);
 
     expect(taskTitle).toHaveStyle("text-decoration-line: line-through");
+  });
+
+  it("should display the loading message when the component is first mounted", () => {
+    render(<TaskManager />);
+
+    const loadingMessage = screen.getByText(/Loading.../i);
+
+    expect(loadingMessage).toBeInTheDocument();
+  });
+
+  it("exist task  with priority: medium and title: Configurar MSW", async () => {
+    render(<TaskManager />);
+
+    await act(async () => {
+      vi.advanceTimersByTime(500);
+    });
+
+    const tableRow = screen.getByTestId("trTable-2");
+
+    const title = within(tableRow).getByText(/Configurar MSW/i);
+    const priority = within(tableRow).getByText(/medium/i);
+
+    expect(title).toBeInTheDocument();
+    expect(priority).toBeInTheDocument();
   });
 });
