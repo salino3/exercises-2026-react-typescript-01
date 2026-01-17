@@ -4,6 +4,7 @@ import { Counter } from "./components/counter/counter.component";
 import { UserProfile } from "./components/user-profile/user-profile.component";
 import { ListProducts } from "./components/list-products/list-products.component";
 import { TaskManager } from "./components/tasks/tasks.component";
+import { SimpleCounter } from "./components/counter-exercise/counter-exercise.component";
 import "./App.scss";
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       {/* <Counter />
       <UserProfile userId="9" /> */}
       {/* <ListProducts /> */}
-      <TaskManager />
+      {/* <TaskManager /> */}
+      <SimpleCounter />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
