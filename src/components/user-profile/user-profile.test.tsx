@@ -38,7 +38,7 @@ describe("UserProfile", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole("heading", { name: /Kurtis Weissnat/i })
+        screen.getByRole("heading", { name: /Kurtis Weissnat/i }),
       ).toBeInTheDocument();
       expect(screen.getByText(/kurtis@gmail.com/i)).toBeInTheDocument();
     });

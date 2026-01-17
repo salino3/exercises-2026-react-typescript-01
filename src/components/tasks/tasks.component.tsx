@@ -110,7 +110,10 @@ export const TaskManager: React.FC = () => {
                     {task.priority}
                   </td>
                   <td className="tdCompletedTM">
-                    <span onClick={() => handleStatus(task.id)}>
+                    <span
+                      data-testid="spanHandleStatus"
+                      onClick={() => handleStatus(task.id)}
+                    >
                       {task.completed ? "✅ " : "⬜"}
                     </span>
                   </td>
