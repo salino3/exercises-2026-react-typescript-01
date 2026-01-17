@@ -5,10 +5,14 @@ import { UserProfile } from "./components/user-profile/user-profile.component";
 import { ListProducts } from "./components/list-products/list-products.component";
 import { TaskManager } from "./components/tasks/tasks.component";
 import { SimpleCounter } from "./components/counter-exercise/counter-exercise.component";
-import "./App.scss";
 import { UserProfile02 } from "./components/user-profile-02/user-profile-02.component";
+import { LoginForm } from "./components/login-form/login-form.component";
+import "./App.scss";
 
 function App() {
+  function onLogin(username: string, role: string) {
+    console.log("onLogin: ", username, role);
+  }
   return (
     <div className="main">
       <Greeting name="" />
@@ -17,7 +21,8 @@ function App() {
       {/* <ListProducts /> */}
       {/* <TaskManager /> */}
       {/* <SimpleCounter /> */}
-      <UserProfile02 />
+      {/* <UserProfile02 /> */}
+      <LoginForm onLogin={onLogin} />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
