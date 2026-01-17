@@ -4,7 +4,9 @@ import { Counter } from "./components/counter/counter.component";
 import { UserProfile } from "./components/user-profile/user-profile.component";
 import { ListProducts } from "./components/list-products/list-products.component";
 import { TaskManager } from "./components/tasks/tasks.component";
+import { SimpleCounter } from "./components/counter-exercise/counter-exercise.component";
 import "./App.scss";
+import { UserProfile02 } from "./components/user-profile-02/user-profile-02.component";
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
       {/* <Counter />
       <UserProfile userId="9" /> */}
       {/* <ListProducts /> */}
-      <TaskManager />
+      {/* <TaskManager /> */}
+      {/* <SimpleCounter /> */}
+      <UserProfile02 />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
