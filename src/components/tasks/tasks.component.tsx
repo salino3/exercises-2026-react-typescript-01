@@ -2,6 +2,15 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import "./task.styles.scss";
 
+export type FetchStatus = "none" | "loading" | "error" | "success";
+
+const statusMessages = {
+  none: "none",
+  loading: "loading",
+  error: "error",
+  success: "success",
+} as const;
+
 export interface Task {
   id: string;
   title: string;
@@ -13,7 +22,7 @@ export const fetchTasks = (): Promise<Task[]> => {
   return new Promise((resolve, reject) => {
     // reject(new Error("Error 500: No se pudo conectar con el servidor"));
     setTimeout(() => {
-      resolve([]);
+      // resolve([]);
       resolve([
         {
           id: "1",
@@ -39,17 +48,25 @@ export const fetchTasks = (): Promise<Task[]> => {
 };
 
 export const TaskManager: React.FC = () => {
+  const MESSAGES = {
+    LOADING: "Loading...",
+    ERROR: "Error, try to refresh the page",
+    EMPTY: "No elements found",
+  };
+
   const [taskList, setTaskList] = useState<Task[]>([]);
-  const [loadingCall, setLoaodingCall] = useState<string>("");
+  const [fetchStatus, setFetchStatus] = useState<FetchStatus>(
+    statusMessages.none,
+  );
 
   useEffect(() => {
-    setLoaodingCall("Loading...");
+    setFetchStatus(statusMessages.loading);
     fetchTasks()
       .then((data: Task[]) => {
         setTaskList(data);
-        setLoaodingCall("");
+        setFetchStatus(statusMessages.success);
       })
-      .catch(() => setLoaodingCall("Error, try to refresh the page"));
+      .catch(() => setFetchStatus(statusMessages.error));
   }, []);
 
   function handleStatus(id: string) {
@@ -61,8 +78,8 @@ export const TaskManager: React.FC = () => {
 
   return (
     <div className="containerTasksManager">
-      {loadingCall === "Loading..." ? (
-        loadingCall
+      {fetchStatus === statusMessages.loading ? (
+        MESSAGES.LOADING
       ) : (
         <table className="table bg-dark text-white">
           <thead>
@@ -101,7 +118,11 @@ export const TaskManager: React.FC = () => {
               ))
             ) : (
               <tr className="text-white">
-                <td colSpan={4}>{loadingCall ? loadingCall : "No elements"}</td>
+                <td colSpan={4}>
+                  {fetchStatus === statusMessages.error
+                    ? MESSAGES.ERROR
+                    : MESSAGES.EMPTY}
+                </td>
               </tr>
             )}
           </tbody>
