@@ -1,5 +1,6 @@
 import type React from "react";
 import { useEffect, useState } from "react";
+import "./task.styles.scss";
 
 export interface Task {
   id: string;
@@ -42,5 +43,32 @@ export const TaskManager: React.FC = () => {
     fetchTasks().then((data: Task[]) => setTaskList(data));
   }, []);
   console.log("Array", taskList);
-  return <div>Tasks</div>;
+  return (
+    <div className="containerTasksManager">
+      <table className="table bg-dark text-white">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Priority</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {taskList &&
+            taskList?.length > 0 &&
+            taskList.map((task: Task) => (
+              <tr key={task?.id} className="thBodyTaskList">
+                <th scope="row">{task.id}</th>
+                <td>{task.title}</td>
+                <td>{task.priority}</td>
+                <td className="tdCompletedTM">
+                  <span>{task.completed ? "✅ " : "⬜"}</span>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
