@@ -7,6 +7,7 @@ import { TaskManager } from "./components/tasks/tasks.component";
 import { SimpleCounter } from "./components/counter-exercise/counter-exercise.component";
 import { UserProfile02 } from "./components/user-profile-02/user-profile-02.component";
 import { LoginForm } from "./components/login-form/login-form.component";
+import { CharacterGallery } from "./components/character-gallery/character-gallery.component";
 import "./App.scss";
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
       {/* <TaskManager /> */}
       {/* <SimpleCounter /> */}
       {/* <UserProfile02 /> */}
-      <LoginForm onLogin={onLogin} />
+      {/* <LoginForm onLogin={onLogin} /> */}
+      <CharacterGallery />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
