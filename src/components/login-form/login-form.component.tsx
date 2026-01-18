@@ -17,6 +17,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
     }
     setError("");
     onLogin(username, role);
+    setUsername("");
+    setRole("user");
   };
 
   return (

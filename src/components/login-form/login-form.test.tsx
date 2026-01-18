@@ -37,10 +37,11 @@ describe("LoginForm", () => {
 
     await user.type(input, "Gerard");
     await user.selectOptions(select, "admin");
+    expect(input).toHaveValue("Gerard");
     await user.click(btnSubmit);
     expect(input).not.toBeNull();
     expect(mockOnLogin).toHaveBeenCalledTimes(1);
-    expect(input).toHaveValue("Gerard");
+    expect(input).toHaveValue("");
     expect(mockOnLogin).toHaveBeenCalledWith("Gerard", "admin");
   });
 
@@ -53,8 +54,37 @@ describe("LoginForm", () => {
     const btnSubmit = screen.getByTestId("btnSubmit");
     await user.selectOptions(dropdown, "admin");
     await user.type(input, "Hola");
+    await user.click(btnSubmit);
+    expect(mockOnLogin).toHaveBeenCalled();
+  });
+
+  it("if user change role value to 'admin' and user clear the input value, it is not sended to the function", async () => {
+    const user = userEvent.setup();
+    const mockOnLogin = vi.fn();
+    render(<LoginForm onLogin={mockOnLogin} />);
+    const input = screen.getByLabelText(/Username:/i);
+    const dropdown = screen.getByLabelText(/Role:/i);
+    const btnSubmit = screen.getByTestId("btnSubmit");
+    await user.selectOptions(dropdown, "admin");
+    await user.type(input, "David");
     await user.clear(input);
     await user.click(btnSubmit);
     expect(mockOnLogin).not.toHaveBeenCalled();
+  });
+
+  it("if user change role value to 'admin', it sended to the function and automatically the input is clear and role is User", async () => {
+    const user = userEvent.setup();
+    const mockOnLogin = vi.fn();
+    render(<LoginForm onLogin={mockOnLogin} />);
+    const input = screen.getByLabelText(/Username:/i);
+    const dropdown = screen.getByLabelText(/Role:/i);
+    const btnSubmit = screen.getByTestId("btnSubmit");
+    await user.selectOptions(dropdown, "admin");
+    await user.type(input, "Tom");
+
+    await user.click(btnSubmit);
+    expect(mockOnLogin).toHaveBeenCalled();
+    expect(input).toHaveValue("");
+    expect(dropdown).toHaveValue("user");
   });
 });
