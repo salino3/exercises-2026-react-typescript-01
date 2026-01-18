@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { CharacterGallery } from "./character-gallery.component";
 import userEvent from "@testing-library/user-event";
@@ -37,5 +37,51 @@ describe("CharacterGallery", () => {
     expect(
       screen.queryByText(/Loading characters.../i),
     ).not.toBeInTheDocument();
+  });
+
+  it("should like Morty Smith specifically without affecting Rick Sanchez", async () => {
+    const user = userEvent.setup();
+
+    // 1. Setup the Mock (Same as your previous test)
+    globalThis.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () =>
+        Promise.resolve({
+          results: [
+            { id: 1, name: "Rick Sanchez", image: "rick.png" },
+            { id: 2, name: "Morty Smith", image: "morty.png" },
+          ],
+        }),
+    });
+
+    render(<CharacterGallery />);
+
+    // 2. Wait for the cards to appear
+    const cards = await screen.findAllByTestId("character-card");
+    expect(cards).toHaveLength(2);
+
+    // 3. Find the specific card for Morty
+    const mortyCard = cards.find((card) =>
+      within(card).queryByText(/Morty Smith/i),
+    );
+
+    if (!mortyCard) throw new Error("Morty card not found");
+
+    // 4. Use 'within' to get the button INSIDE Morty's card
+    const mortyButton = within(mortyCard).getByRole("button", {
+      name: /Like/i,
+    });
+    await user.click(mortyButton);
+
+    // 5. ASSERTIONS
+    // Morty's button should change
+    expect(mortyButton).toHaveTextContent(/Liked/i);
+
+    // Rick's button should STILL be unliked
+    const rickCard = cards.find((card) =>
+      within(card).queryByText(/Rick Sanchez/i),
+    );
+    const rickButton = within(rickCard!).getByRole("button");
+    expect(rickButton).toHaveTextContent(/🤍 Like/i);
   });
 });
