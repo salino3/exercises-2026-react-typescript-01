@@ -48,23 +48,31 @@ export const CharacterGallery: React.FC = () => {
     <div aria-label="gallery">
       <h1>Rick and Morty Characters</h1>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-        {characters.map((char) => (
-          <div
-            key={char.id}
-            data-testid="character-card"
-            style={{
-              border: "1px solid gray",
-              margin: "10px",
-              padding: "10px",
-            }}
-          >
-            <img src={char.image} alt={char.name} style={{ width: "100px" }} />
-            <h3>{char.name}</h3>
-            <button onClick={() => toggleLike(char.id)}>
-              {likedIds.includes(char.id) ? "❤️ Liked" : "🤍 Like"}
-            </button>
-          </div>
-        ))}
+        {characters && characters.length > 0 ? (
+          characters.map((char) => (
+            <div
+              key={char.id}
+              data-testid="character-card"
+              style={{
+                border: "1px solid gray",
+                margin: "10px",
+                padding: "10px",
+              }}
+            >
+              <img
+                src={char.image}
+                alt={char.name}
+                style={{ width: "100px" }}
+              />
+              <h3>{char.name}</h3>
+              <button onClick={() => toggleLike(char.id)}>
+                {likedIds.includes(char.id) ? "❤️ Liked" : "🤍 Like"}
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No characters found</p>
+        )}
       </div>
     </div>
   );
