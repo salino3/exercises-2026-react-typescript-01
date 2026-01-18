@@ -23,4 +23,24 @@ describe("LoginForm", () => {
 
     expect(mockOnLogin).not.toHaveBeenCalled();
   });
+
+  it("calls onLogin with correct data when form is valid", async () => {
+    const user = userEvent.setup();
+
+    const mockOnLogin = vi.fn();
+
+    render(<LoginForm onLogin={mockOnLogin} />);
+
+    const input = screen.getByLabelText(/Username:/i);
+    const select = screen.getByLabelText(/Role:/i);
+    const btnSubmit = screen.getByRole("button", { name: /Sign In/i });
+
+    await user.type(input, "Gerard");
+    await user.selectOptions(select, "admin");
+    await user.click(btnSubmit);
+    expect(input).not.toBeNull();
+    expect(mockOnLogin).toHaveBeenCalledTimes(1);
+    expect(input).toHaveValue("Gerard");
+    expect(mockOnLogin).toHaveBeenCalledWith("Gerard", "admin");
+  });
 });
