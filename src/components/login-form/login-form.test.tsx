@@ -43,4 +43,18 @@ describe("LoginForm", () => {
     expect(input).toHaveValue("Gerard");
     expect(mockOnLogin).toHaveBeenCalledWith("Gerard", "admin");
   });
+
+  it("if user change role value to 'admin', it is sended to the function", async () => {
+    const user = userEvent.setup();
+    const mockOnLogin = vi.fn();
+    render(<LoginForm onLogin={mockOnLogin} />);
+    const input = screen.getByLabelText(/Username:/i);
+    const dropdown = screen.getByLabelText(/Role:/i);
+    const btnSubmit = screen.getByTestId("btnSubmit");
+    await user.selectOptions(dropdown, "admin");
+    await user.type(input, "Hola");
+    await user.clear(input);
+    await user.click(btnSubmit);
+    expect(mockOnLogin).not.toHaveBeenCalled();
+  });
 });
