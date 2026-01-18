@@ -28,7 +28,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       )}
 
       <div>
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Username:</label>{" "}
         <input
           id="username"
           type="text"
@@ -36,9 +36,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-
+      <br />
       <div>
-        <label htmlFor="role">Role:</label>
+        <label htmlFor="role">Role:</label>{" "}
         <select
           id="role"
           value={role}
@@ -48,8 +48,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           <option value="admin">Admin</option>
         </select>
       </div>
-
-      <button type="submit">Sign In</button>
+      <br />
+      <button data-testid="btnSubmit" type="submit">
+        Sign In
+      </button>
     </form>
   );
 };
