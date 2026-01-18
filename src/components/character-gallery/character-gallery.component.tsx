@@ -46,8 +46,9 @@ export const CharacterGallery: React.FC = () => {
 
   return (
     <div aria-label="gallery">
+      {/* {JSON.stringify(characters)} */}
       <h1>Rick and Morty Characters</h1>
-      <h3>Liked characters: {likedIds.length}</h3>
+      <h2>Liked characters: {likedIds.length}</h2>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
         {characters && characters.length > 0 ? (
           characters.map((char) => (
