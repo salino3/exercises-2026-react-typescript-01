@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Define the shape of a single Task
 interface Task {
@@ -32,25 +32,26 @@ export const TaskManager02: React.FC = () => {
     };
 
     setTasks([...tasks, newTask]);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
     setInputValue("");
   };
 
   // Toggle completion status
   const toggleTask = (id: number) => {
-    const newTask: Task[] = tasks.map((task) =>
-      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task,
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task,
+      ),
     );
-    setTasks(newTask);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
   };
 
   // Delete a task
   const deleteTask = (id: number) => {
-    const newTasks: Task[] = tasks.filter((task) => task.id !== id);
-    setTasks(newTasks);
-    localStorage.setItem("tasks", JSON.stringify(newTasks));
+    setTasks(tasks.filter((task) => task.id !== id));
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   return (
     <div style={{ padding: "20px", maxWidth: "400px", margin: "auto" }}>
