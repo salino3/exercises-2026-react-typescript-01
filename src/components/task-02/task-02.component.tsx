@@ -8,7 +8,11 @@ interface Task {
 }
 
 export const TaskManager02: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(
+    localStorage.getItem("tasks")
+      ? JSON.parse(localStorage.getItem("tasks") || "")
+      : [],
+  );
   const [inputValue, setInputValue] = useState<string>("");
 
   // Handle input changes
@@ -28,6 +32,7 @@ export const TaskManager02: React.FC = () => {
     };
 
     setTasks([...tasks, newTask]);
+    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
     setInputValue("");
   };
 
