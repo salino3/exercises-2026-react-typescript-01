@@ -78,6 +78,9 @@ export const TaskManager02: React.FC = () => {
         {tasks && tasks?.length > 0 ? (
           tasks.map((task) => (
             <li
+              data-testid="liTask"
+              // const task = container.querySelector('[data-task-id="12345"]');
+              data-task-id={`liTask-${task.id}`}
               key={task.id}
               style={{
                 display: "flex",
