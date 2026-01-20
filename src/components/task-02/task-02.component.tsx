@@ -38,16 +38,18 @@ export const TaskManager02: React.FC = () => {
 
   // Toggle completion status
   const toggleTask = (id: number) => {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, isCompleted: !task.isCompleted } : task,
-      ),
+    const newTask: Task[] = tasks.map((task) =>
+      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task,
     );
+    setTasks(newTask);
+    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
   };
 
   // Delete a task
   const deleteTask = (id: number) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    const newTasks: Task[] = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
   };
 
   return (
