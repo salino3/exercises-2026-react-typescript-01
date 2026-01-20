@@ -59,6 +59,7 @@ export const TaskManager02: React.FC = () => {
       <form onSubmit={addTask} style={{ marginBottom: "20px" }}>
         <input
           type="text"
+          data-testid="inputTextValue"
           value={inputValue}
           onChange={handleInputChange}
           placeholder="What needs to be done?"
@@ -66,6 +67,7 @@ export const TaskManager02: React.FC = () => {
         />
         <button
           type="submit"
+          data-testid="btnSubmit"
           style={{ padding: "8px 12px", marginLeft: "5px" }}
         >
           Add
@@ -73,30 +75,34 @@ export const TaskManager02: React.FC = () => {
       </form>
 
       <ul style={{ listStyle: "none", padding: 0 }}>
-        {tasks.map((task) => (
-          <li
-            key={task.id}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginBottom: "10px",
-              textDecoration: task.isCompleted ? "line-through" : "none",
-            }}
-          >
-            <span
-              onClick={() => toggleTask(task.id)}
-              style={{ cursor: "pointer" }}
+        {tasks && tasks?.length > 0 ? (
+          tasks.map((task) => (
+            <li
+              key={task.id}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                marginBottom: "10px",
+                textDecoration: task.isCompleted ? "line-through" : "none",
+              }}
             >
-              {task.text}
-            </span>
-            <button
-              onClick={() => deleteTask(task.id)}
-              style={{ color: "red" }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
+              <span
+                onClick={() => toggleTask(task.id)}
+                style={{ cursor: "pointer" }}
+              >
+                {task.text}
+              </span>
+              <button
+                onClick={() => deleteTask(task.id)}
+                style={{ color: "red" }}
+              >
+                Delete
+              </button>
+            </li>
+          ))
+        ) : (
+          <span>There are no elements.</span>
+        )}
       </ul>
     </div>
   );
