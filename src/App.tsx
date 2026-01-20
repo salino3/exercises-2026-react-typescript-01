@@ -9,6 +9,7 @@ import { UserProfile02 } from "./components/user-profile-02/user-profile-02.comp
 import { LoginForm } from "./components/login-form/login-form.component";
 import { CharacterGallery } from "./components/character-gallery/character-gallery.component";
 import "./App.scss";
+import { TaskManager02 } from "./components/task-02/task-02.component";
 
 function App() {
   function onLogin(username: string, role: string) {
@@ -24,7 +25,8 @@ function App() {
       {/* <SimpleCounter /> */}
       {/* <UserProfile02 /> */}
       {/* <LoginForm onLogin={onLogin} /> */}
-      <CharacterGallery />
+      {/* <CharacterGallery /> */}
+      <TaskManager02 />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
