@@ -2,14 +2,14 @@ export const BindComponent = () => {
   // We add 'this: { name: string }' as the first parameter.
   // This is ONLY for TypeScript; it disappears when the code runs.
   function introduce(
-    this: { name: string },
+    this: { name: string; email: string },
     surname: string | null,
     age: number,
   ) {
     console.log(`User: ${this.name} ${surname}, Age: ${age}`);
   }
 
-  const userObj = { name: "Lucas" };
+  const userObj = { name: "Lucas", email: "luca@ ..." };
 
   // 2. BIND: The first argument 'userObj' now matches the 'this' type above
   const greetSilva = introduce.bind(userObj, "Silva");
