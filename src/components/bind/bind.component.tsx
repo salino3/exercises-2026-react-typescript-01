@@ -12,6 +12,7 @@ export const BindComponent = () => {
   const userObj = { name: "Lucas", email: "luca@ ..." };
 
   // 2. BIND: The first argument 'userObj' now matches the 'this' type above
+  // The first argument of .bind() ALWAYS goes to this.
   const greetSilva = introduce.bind(userObj, "Silva");
 
   // 3. EXECUTION
