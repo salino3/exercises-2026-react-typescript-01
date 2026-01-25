@@ -16,27 +16,27 @@ interface CartItem extends Product {
   quantity: number;
 }
 
+export const availableProducts: Product[] = [
+  {
+    id: 1,
+    name: "Laptop Pro",
+    price: 1200,
+    category: "Electrónica",
+    inventory: 5,
+  },
+  {
+    id: 2,
+    name: "Camiseta Algodón",
+    price: 25,
+    category: "Ropa",
+    inventory: 10,
+    discount: 5,
+  },
+  { id: 3, name: "Cafetera", price: 80, category: "Hogar", inventory: 3 },
+];
+
 export const ShoppingCart: React.FC = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
-
-  const availableProducts: Product[] = [
-    {
-      id: 1,
-      name: "Laptop Pro",
-      price: 1200,
-      category: "Electrónica",
-      inventory: 5,
-    },
-    {
-      id: 2,
-      name: "Camiseta Algodón",
-      price: 25,
-      category: "Ropa",
-      inventory: 10,
-      discount: 5,
-    },
-    { id: 3, name: "Cafetera", price: 80, category: "Hogar", inventory: 3 },
-  ];
 
   const addToCart = (product: Product) => {
     const lengthAvailableProducts =
@@ -114,7 +114,7 @@ export const ShoppingCart: React.FC = () => {
       >
         <div>
           <h3>Available Products </h3>
-          <div className="containerProducts">
+          <div data-testid="containerProducts" className="containerProducts">
             {availableProducts.map((p) => (
               <div
                 key={p.id}
@@ -133,6 +133,8 @@ export const ShoppingCart: React.FC = () => {
                   <button
                     onClick={() => addToCart(p)}
                     style={{ marginLeft: "10px" }}
+                    //   container.querySelector('[data-task-id="12345"]');
+                    data-btn-id={`btn-${p.name}`}
                   >
                     Add
                   </button>
