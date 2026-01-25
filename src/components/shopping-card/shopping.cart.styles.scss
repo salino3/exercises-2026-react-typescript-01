@@ -1,0 +1,17 @@
+.containerProducts {
+  .cardProducts {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+
+    .boxButtons {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
