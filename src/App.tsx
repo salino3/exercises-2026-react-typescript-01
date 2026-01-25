@@ -12,6 +12,7 @@ import "./App.scss";
 import { TaskManager02 } from "./components/task-02/task-02.component";
 import { MonitorDeCarga } from "./components/all-settled/all-settled.component";
 import { BindComponent } from "./components/bind/bind.component";
+import { ShoppingCart } from "./components/shopping-card/shopping-card.component";
 
 function App() {
   function onLogin(username: string, role: string) {
@@ -30,7 +31,8 @@ function App() {
       {/* <CharacterGallery /> */}
       {/* <TaskManager02 /> */}
       {/* <MonitorDeCarga /> */}
-      <BindComponent />
+      {/* <BindComponent /> */}
+      <ShoppingCart />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
