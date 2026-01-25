@@ -70,17 +70,19 @@ export const ShoppingCart: React.FC = () => {
       const existing = prevCart.find((item) => item.id === product.id);
 
       if (existing) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? {
-                ...item,
-                quantity:
-                  item.quantity <= 0 ? item.quantity : item.quantity - 1,
-              }
-            : item,
-        );
+        return prevCart
+          .map((item) =>
+            item.id === product.id
+              ? {
+                  ...item,
+                  quantity:
+                    item.quantity <= 0 ? item.quantity : item.quantity - 1,
+                }
+              : item,
+          )
+          .filter((cart) => cart?.quantity > 0);
       }
-      return prevCart;
+      return prevCart.filter((cart) => cart?.quantity > 0);
     });
   };
 
