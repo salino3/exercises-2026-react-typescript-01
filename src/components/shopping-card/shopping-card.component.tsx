@@ -65,7 +65,24 @@ export const ShoppingCart: React.FC = () => {
     });
   };
 
-  const removeToCart = (product: Product) => {};
+  const removeToCart = (product: Product) => {
+    setCart((prevCart) => {
+      const existing = prevCart.find((item) => item.id === product.id);
+
+      if (existing) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? {
+                ...item,
+                quantity:
+                  item.quantity <= 0 ? item.quantity : item.quantity - 1,
+              }
+            : item,
+        );
+      }
+      return prevCart;
+    });
+  };
 
   const calculateTotal = (): string => {
     const total: { total: number; totalDiscounted: number } = cart.reduce(
@@ -82,7 +99,7 @@ export const ShoppingCart: React.FC = () => {
     );
     return `Total: ${total.total || 0}  - Total for pay: ${total.totalDiscounted || 0}`;
   };
-
+  console.log("clog1", cart);
   return (
     <div
       className="rootStoteTypescript"
