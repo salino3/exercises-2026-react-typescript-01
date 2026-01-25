@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./shopping.cart.styles.scss";
 
 type Category = "Electrónica" | "Ropa" | "Hogar";
 
@@ -64,44 +65,71 @@ export const ShoppingCart: React.FC = () => {
     });
   };
 
-  const calculateTotal = (): number => {
-    return cart.reduce((acc, item) => {
-      const priceWithDiscount = item.price - (item.discount || 0);
-      return acc + priceWithDiscount * item.quantity;
-    }, 0);
+  const removeToCart = (product: Product) => {};
+
+  const calculateTotal = (): string => {
+    const total: { total: number; totalDiscounted: number } = cart.reduce(
+      (acc, item) => {
+        const priceWithDiscount = item.price - (item.discount || 0);
+        acc = {
+          total: item.price * item.quantity,
+          totalDiscounted: priceWithDiscount * item.quantity,
+        };
+        return acc;
+      },
+      { total: 0, totalDiscounted: 0 },
+    );
+    return `Total: ${total.total || 0}  - Total for pay: ${total.totalDiscounted || 0}`;
   };
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
-      <h2>Tienda TypeScript</h2>
+    <div
+      className="rootStoteTypescript"
+      style={{ padding: "20px", fontFamily: "Arial" }}
+    >
+      <h2>Store TypeScript</h2>
 
       <div
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}
       >
         <div>
-          <h3>Productos Disponibles</h3>
-          {availableProducts.map((p) => (
-            <div
-              key={p.id}
-              style={{
-                border: "1px solid #ccc",
-                padding: "10px",
-                marginBottom: "5px",
-              }}
-            >
-              <strong>{p.name}</strong> - ${p.price}
-              <button
-                onClick={() => addToCart(p)}
-                style={{ marginLeft: "10px" }}
+          <h3>Available Products </h3>
+          <div className="containerProducts">
+            {availableProducts.map((p) => (
+              <div
+                key={p.id}
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "10px",
+                  marginBottom: "5px",
+                }}
+                className="cardProducts"
               >
-                Agregar
-              </button>
-            </div>
-          ))}
+                <span>
+                  <strong>{p.name}</strong> - ${p.price}
+                  {!!p.discount && " - Price reduced!"}
+                </span>
+                <div className="boxButtons">
+                  <button
+                    onClick={() => addToCart(p)}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Add
+                  </button>
+                  <button
+                    onClick={() => removeToCart(p)}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div style={{ background: "#f9f9f9", color: "black", padding: "15px" }}>
-          <h3>Tu Carrito</h3>
+          <h3>Your Cart</h3>
           {cart.map((item) => (
             <div key={item.id}>
               {item.name} x {item.quantity} - $
@@ -109,7 +137,7 @@ export const ShoppingCart: React.FC = () => {
             </div>
           ))}
           <hr />
-          <h4>Total a pagar: ${calculateTotal()}</h4>
+          {/* <h4> {calculateTotal()}</h4> */}
         </div>
       </div>
     </div>
