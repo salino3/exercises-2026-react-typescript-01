@@ -72,8 +72,9 @@ export const ShoppingCart: React.FC = () => {
       (acc, item) => {
         const priceWithDiscount = item.price - (item.discount || 0);
         acc = {
-          total: item.price * item.quantity,
-          totalDiscounted: priceWithDiscount * item.quantity,
+          total: (acc.total += item.price * item.quantity),
+          totalDiscounted: (acc.totalDiscounted +=
+            priceWithDiscount * item.quantity),
         };
         return acc;
       },
@@ -137,7 +138,7 @@ export const ShoppingCart: React.FC = () => {
             </div>
           ))}
           <hr />
-          {/* <h4> {calculateTotal()}</h4> */}
+          <h4> {calculateTotal()}</h4>
         </div>
       </div>
     </div>
