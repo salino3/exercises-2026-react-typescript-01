@@ -15,6 +15,7 @@ import { ShoppingCart } from "./components/shopping-card/shopping-card.component
 import { EmployeeList } from "./components/employee-list/employee-list.component";
 import "./App.scss";
 import { ChatWindow } from "./components/chat-window/chat-window.component";
+import { AppProvider } from "./context/provider";
 
 function App() {
   function onLogin(username: string, role: string) {
@@ -36,7 +37,9 @@ function App() {
       {/* <BindComponent /> */}
       {/* <ShoppingCart /> */}
       {/* <EmployeeList /> */}
-      <ChatWindow />
+      <AppProvider>
+        <ChatWindow />
+      </AppProvider>
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />

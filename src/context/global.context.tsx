@@ -10,6 +10,12 @@ type ContextTypes = {
     name: string;
     age: number;
   };
+  setUser: React.Dispatch<
+    React.SetStateAction<{
+      name: string;
+      age: number;
+    }>
+  >;
 };
 
 export const initialValues: ContextTypes = {
@@ -17,6 +23,7 @@ export const initialValues: ContextTypes = {
   theme: "light",
   setTheme: () => {},
   user: { name: "Joe", age: 50 },
+  setUser: () => {},
 };
 
 export const GlobalContext = createContext<ContextTypes>(initialValues);
