@@ -14,6 +14,7 @@ import { BindComponent } from "./components/bind/bind.component";
 import { ShoppingCart } from "./components/shopping-card/shopping-card.component";
 import { EmployeeList } from "./components/employee-list/employee-list.component";
 import "./App.scss";
+import { ChatWindow } from "./components/chat-window/chat-window.component";
 
 function App() {
   function onLogin(username: string, role: string) {
@@ -34,7 +35,8 @@ function App() {
       {/* <MonitorDeCarga /> */}
       {/* <BindComponent /> */}
       {/* <ShoppingCart /> */}
-      <EmployeeList />
+      {/* <EmployeeList /> */}
+      <ChatWindow />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />

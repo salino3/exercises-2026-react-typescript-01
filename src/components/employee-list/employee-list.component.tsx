@@ -1,20 +1,8 @@
-import React, {
-  useRef,
-  type DetailedHTMLProps,
-  type HTMLAttributes,
-} from "react";
+import React, { useRef } from "react";
 
 export const EmployeeList: React.FC = () => {
-  const topRef = useRef<
-    | DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-    | undefined
-    | any
-  >();
-  const bottomRef = useRef<
-    | DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-    | undefined
-    | any
-  >();
+  const topRef = useRef<HTMLHeadingElement | undefined | any>();
+  const bottomRef = useRef<HTMLDivElement | undefined | any>();
 
   const scrollToTop = () => {
     topRef?.current?.scrollIntoView({ behavior: "smooth" });
