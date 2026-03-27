@@ -8,11 +8,12 @@ import { SimpleCounter } from "./components/counter-exercise/counter-exercise.co
 import { UserProfile02 } from "./components/user-profile-02/user-profile-02.component";
 import { LoginForm } from "./components/login-form/login-form.component";
 import { CharacterGallery } from "./components/character-gallery/character-gallery.component";
-import "./App.scss";
 import { TaskManager02 } from "./components/task-02/task-02.component";
 import { MonitorDeCarga } from "./components/all-settled/all-settled.component";
 import { BindComponent } from "./components/bind/bind.component";
 import { ShoppingCart } from "./components/shopping-card/shopping-card.component";
+import { EmployeeList } from "./components/employee-list/employee-list.component";
+import "./App.scss";
 
 function App() {
   function onLogin(username: string, role: string) {
@@ -32,7 +33,8 @@ function App() {
       {/* <TaskManager02 /> */}
       {/* <MonitorDeCarga /> */}
       {/* <BindComponent /> */}
-      <ShoppingCart />
+      {/* <ShoppingCart /> */}
+      <EmployeeList />
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
