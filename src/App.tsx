@@ -16,6 +16,7 @@ import { EmployeeList } from "./components/employee-list/employee-list.component
 import "./App.scss";
 import { ChatWindow } from "./components/chat-window/chat-window.component";
 import { AppProvider } from "./context/provider";
+import { Timer } from "./components/timer/timer.component";
 
 function App() {
   function onLogin(username: string, role: string) {
@@ -37,6 +38,7 @@ function App() {
       {/* <BindComponent /> */}
       {/* <ShoppingCart /> */}
       {/* <EmployeeList /> */}
+      <Timer />
       <AppProvider>
         <ChatWindow />
       </AppProvider>
