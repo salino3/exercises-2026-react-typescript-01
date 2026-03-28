@@ -1,24 +1,32 @@
-import { useState } from "react";
-import { GlobalContext, initialValues, type Theme } from "./global.context";
+import { useReducer } from "react";
+import {
+  GlobalContext,
+  initialValues,
+  type Action,
+  type ContextTypes,
+} from "./global.context";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export const AppProvider: React.FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [user, setUser] = useState({ name: "Joe", age: 50 });
+// 2. The Reducer: The "Brain" that decides how state changes
+function globalReducer(state: ContextTypes, action: Action): ContextTypes {
+  switch (action.type) {
+    case "SET_THEME":
+      return { ...state, theme: action.payload };
+    case "UPDATE_USER":
+      return { ...state, user: action.payload };
+    default:
+      return state;
+  }
+}
 
-  const contextValue = {
-    id: "sde4rfe4",
-    theme,
-    setTheme,
-    user,
-    setUser,
-  };
+export const AppProvider: React.FC<Props> = ({ children }) => {
+  const [state, dispatch] = useReducer(globalReducer, initialValues);
 
   return (
-    <GlobalContext.Provider value={contextValue}>
+    <GlobalContext.Provider value={{ ...state, dispatch }}>
       {children}
     </GlobalContext.Provider>
   );

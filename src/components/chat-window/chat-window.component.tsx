@@ -1,15 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { GlobalContext, type ContextTypes } from "../../context/global.context";
 
 export const ChatWindow: React.FC = () => {
+  const { theme, dispatch } = useContext<ContextTypes>(GlobalContext);
+
   const [messages, setMessages] = useState<string[]>([
     "Hello!",
     "How can I help?",
   ]);
+
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    bottomRef?.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages.length]);
+  const toggleTheme = () => {
+    const nextTheme = theme === "light" ? "dark" : "light";
+
+    dispatch({
+      type: "SET_THEME",
+      payload: nextTheme,
+    });
+  };
 
   const addMessage = () => {
     setMessages([
@@ -18,8 +27,26 @@ export const ChatWindow: React.FC = () => {
     ]);
   };
 
+  useEffect(() => {
+    bottomRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages.length]);
+
   return (
     <div style={{ border: "1px solid #ccc", padding: "10px" }}>
+      <div
+        style={{
+          display: "flex",
+          gap: "1rem",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h3>
+          Theme: <span style={{ color: "#04ba6e" }}>{theme}</span>
+        </h3>
+
+        <button onClick={toggleTheme}>Switch Theme</button>
+      </div>
       <div
         style={{
           height: "200px",
