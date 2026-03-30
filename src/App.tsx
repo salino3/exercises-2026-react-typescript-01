@@ -17,14 +17,16 @@ import "./App.scss";
 import { ChatWindow } from "./components/chat-window/chat-window.component";
 import { AppProvider } from "./context/provider";
 import { Timer } from "./components/timer/timer.component";
+import { TaskDashboard } from "./components/task-03/task-03.component";
 
 function App() {
-  function onLogin(username: string, role: string) {
-    console.log("onLogin: ", username, role);
-  }
+  // function onLogin(username: string, role: string) {
+  //   console.log("onLogin: ", username, role);
+  // }
   return (
     <div className="main">
       <Greeting name="" />
+      <TaskDashboard />
       {/* <Counter />
       <UserProfile userId="9" /> */}
       {/* <ListProducts /> */}
@@ -38,10 +40,10 @@ function App() {
       {/* <BindComponent /> */}
       {/* <ShoppingCart /> */}
       {/* <EmployeeList /> */}
-      <Timer />
-      <AppProvider>
+      {/* <Timer /> */}
+      {/* <AppProvider>
         <ChatWindow />
-      </AppProvider>
+      </AppProvider> */}
       {/* <details open>
         <summary>Exercise 01 TS</summary>
         <PostManager />
