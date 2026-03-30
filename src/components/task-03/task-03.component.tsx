@@ -82,6 +82,11 @@ export const TaskDashboard = () => {
     );
   }
 
+  //
+  function handleDeleteTask(taskId: number) {
+    setTasks(tasks.filter((task: Task) => task.id !== taskId));
+  }
+
   return (
     <div className="rootTaskDashboard" style={{ padding: "20px" }}>
       <h1>Project Dashboard</h1>
@@ -101,7 +106,7 @@ export const TaskDashboard = () => {
 
       {filteredTasks.length > 0 ? (
         <ul>
-          {filteredTasks.map((task) => (
+          {filteredTasks.map((task: Task) => (
             <li
               key={task.id}
               style={{ color: task.priority === "high" ? "red" : "white" }}
@@ -113,6 +118,7 @@ export const TaskDashboard = () => {
               >
                 {task.status}
               </button>
+              <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
             </li>
           ))}
         </ul>
