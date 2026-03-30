@@ -89,41 +89,59 @@ export const TaskDashboard = () => {
 
   return (
     <div className="rootTaskDashboard" style={{ padding: "20px" }}>
-      <h1>Project Dashboard</h1>
-      <div style={{ marginBottom: "10px" }}>
-        <strong>
+      <h1 id="project-dashboard-heading">Project Dashboard</h1>
+      <div role="status" aria-labelledby="completion-stats">
+        <strong id="completion-stats">
           Completed: {stats.count} | Points: {stats.points}
         </strong>
       </div>
 
-      <div className="boxInput">
+      <div className="boxInput  boxInputTitle">
+        <label htmlFor="task-filter-input">Filter tasks:</label>
         <input
+          id="task-filter-input"
           type="text"
           placeholder="Filter tasks..."
+          value={searchTask} // Added value attribute for controlled component
           onChange={(e) => setSearchTask(e.target.value)}
+          aria-label="Filter tasks by title"
         />
       </div>
 
       {filteredTasks.length > 0 ? (
-        <ul>
+        <ul aria-labelledby="project-dashboard-heading">
           {filteredTasks.map((task: Task) => (
             <li
               key={task.id}
+              role="listitem"
+              aria-describedby={`task-title-${task.id} task-status-${task.id}`}
               style={{ color: task.priority === "high" ? "red" : "white" }}
             >
-              {task.title}
+              <span id={`task-title-${task.id}`}>{task.title}</span>
+              <span
+                id={`task-status-${task.id}`}
+                style={{ marginLeft: "10px" }}
+              >
+                Status: {task.status}
+              </span>
               <button
                 onClick={() => handleCompleteTask(task.id)}
                 disabled={task.status === "completed"}
+                aria-label={`Mark ${task.title} as completed`}
               >
-                {task.status}
+                {task.status === "completed" ? "Completed" : "Mark as Complete"}
               </button>
-              <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+              <button
+                onClick={() => handleDeleteTask(task.id)}
+                aria-label={`Delete ${task.title}`}
+              >
+                Delete
+              </button>
             </li>
           ))}
         </ul>
       ) : (
-        <p>No tasks found</p>
+        <p role="alert">No tasks found</p>
       )}
     </div>
   );
