@@ -1,0 +1,22 @@
+.rootTaskDashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  .boxInputTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: min-content;
+
+    label {
+      display: flex;
+      justify-content: flex-start;
+
+      width: 100%;
+    }
+  }
+}

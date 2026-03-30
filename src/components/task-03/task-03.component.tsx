@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import "./task-03.styles.scss";
 
 type TaskStatus = "todo" | "in-progress" | "completed";
 
@@ -49,7 +50,8 @@ const mockTasks: Task[] = [
 ];
 
 export const TaskDashboard = () => {
-  // 1. Initialize state with mockTasks
+  const [searchTask, setSearchTask] = useState<string>("[]");
+
   const state: { points: number; count: number } = useMemo(
     () =>
       mockTasks.reduce(
@@ -63,12 +65,25 @@ export const TaskDashboard = () => {
       ),
     [],
   );
-  // 2. Add a search state (string)
 
-  console.log("clog1", state);
+  const filteredTasks: Task[] = useMemo(() => {
+    return mockTasks.filter((task) => task.title.includes(searchTask));
+  }, [searchTask]);
+
+  console.log("clog1", filteredTasks);
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="rootTaskDashboard" style={{ padding: "20px" }}>
       <h1>Project Dashboard</h1>
+      <div className="boxInput boxInputTitle">
+        <label htmlFor="title">Title Tasks</label>
+        <input
+          type="text"
+          placeholder="Title tasks.."
+          name="title"
+          id="title"
+          onChange={(event) => setSearchTask(event.target.value)}
+        />
+      </div>
       {/* Render your summary and list here */}
     </div>
   );
