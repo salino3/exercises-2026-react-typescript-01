@@ -11,4 +11,11 @@ html {
   text-align: center;
   background-color: #242424;
   color: rgba(255, 255, 255, 0.87);
+
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

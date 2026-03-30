@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "./task-03.styles.scss";
 
 type TaskStatus = "todo" | "in-progress" | "completed";
@@ -50,41 +50,75 @@ const mockTasks: Task[] = [
 ];
 
 export const TaskDashboard = () => {
-  const [searchTask, setSearchTask] = useState<string>("[]");
+  const [searchTask, setSearchTask] = useState<string>("");
+  const [tasks, setTasks] = useState<Task[]>(mockTasks);
 
-  const state: { points: number; count: number } = useMemo(
-    () =>
-      mockTasks.reduce(
-        (acc, task) => {
-          return {
-            points: acc.points + task.points,
-            count: task.status == "completed" ? acc.count + 1 : acc.count,
-          };
-        },
-        { points: 0, count: 0 },
+  //
+  const stats = useMemo(() => {
+    return tasks.reduce(
+      (acc, task) => {
+        const isComp = task.status === "completed";
+        return {
+          points: isComp ? acc.points + task.points : acc.points,
+          count: isComp ? acc.count + 1 : acc.count,
+        };
+      },
+      { points: 0, count: 0 },
+    );
+  }, [tasks]);
+
+  //
+  const filteredTasks = useMemo(() => {
+    const regex = new RegExp(searchTask, "i");
+    return tasks.filter((task) => regex.test(task.title));
+  }, [searchTask, tasks]);
+
+  //
+  function handleCompleteTask(taskId: number) {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, status: "completed" as const } : task,
       ),
-    [],
-  );
+    );
+  }
 
-  const filteredTasks: Task[] = useMemo(() => {
-    return mockTasks.filter((task) => task.title.includes(searchTask));
-  }, [searchTask]);
-
-  console.log("clog1", filteredTasks);
   return (
     <div className="rootTaskDashboard" style={{ padding: "20px" }}>
       <h1>Project Dashboard</h1>
-      <div className="boxInput boxInputTitle">
-        <label htmlFor="title">Title Tasks</label>
+      <div style={{ marginBottom: "10px" }}>
+        <strong>
+          Completed: {stats.count} | Points: {stats.points}
+        </strong>
+      </div>
+
+      <div className="boxInput">
         <input
           type="text"
-          placeholder="Title tasks.."
-          name="title"
-          id="title"
-          onChange={(event) => setSearchTask(event.target.value)}
+          placeholder="Filter tasks..."
+          onChange={(e) => setSearchTask(e.target.value)}
         />
       </div>
-      {/* Render your summary and list here */}
+
+      {filteredTasks.length > 0 ? (
+        <ul>
+          {filteredTasks.map((task) => (
+            <li
+              key={task.id}
+              style={{ color: task.priority === "high" ? "red" : "white" }}
+            >
+              {task.title}
+              <button
+                onClick={() => handleCompleteTask(task.id)}
+                disabled={task.status === "completed"}
+              >
+                {task.status}
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No tasks found</p>
+      )}
     </div>
   );
 };
