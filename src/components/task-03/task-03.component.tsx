@@ -102,7 +102,7 @@ export const TaskDashboard = () => {
           id="task-filter-input"
           type="text"
           placeholder="Filter tasks..."
-          value={searchTask} // Added value attribute for controlled component
+          value={searchTask}
           onChange={(e) => setSearchTask(e.target.value)}
           aria-label="Filter tasks by title"
         />
@@ -113,7 +113,8 @@ export const TaskDashboard = () => {
           {filteredTasks.map((task: Task) => (
             <li
               key={task.id}
-              role="listitem"
+              role="list-item"
+              aria-label={task.priority === "high" ? "(High Priority)" : ""}
               aria-describedby={`task-title-${task.id} task-status-${task.id}`}
               style={{ color: task.priority === "high" ? "red" : "white" }}
             >
