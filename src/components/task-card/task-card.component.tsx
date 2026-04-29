@@ -1,6 +1,8 @@
 import React from "react";
 import "./task-card.styles.scss";
 
+type Role = "admin" | "user" | "subscriber";
+
 // Task 1: Define the shape of the 'user' prop
 interface UserProps {
   user: {
@@ -8,7 +10,7 @@ interface UserProps {
     name: string;
     username: string;
     email: string;
-    isAdmin?: boolean; // Optional property
+    role?: Role;
   };
   onSendMessage: () => void;
 }
@@ -16,7 +18,7 @@ interface UserProps {
 export const UserCard: React.FC<UserProps> = ({ user, onSendMessage }) => {
   console.log("XXX", user);
   return (
-    <div className={`user-card ${user.isAdmin ? "admin-border" : ""}`}>
+    <div className={`user-card ${user.role === "admin" ? "admin-border" : ""}`}>
       <div className="user-info">
         <h3>{user.name}</h3>
         <p>@{user.username}</p>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { BoxBaseInput } from "../box-input/box-input.component";
 import type { User } from "../../../../App";
 import styles from "./form.module.scss";
 
@@ -32,45 +33,56 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
     }));
   };
 
-  // Create a handler function
-  const addUser = () => {
-    const newUser: User = {
-      id: Date.now(),
-      name: "New User",
-      username: "user_name",
-      email: "new@example.com",
-      isAdmin: false,
-    };
+  //   // Create a handler function
+  //   const addUser = () => {
+  //     const newUser: User = {
+  //       id: Date.now(),
+  //       name: "New User",
+  //       username: "user_name",
+  //       email: "new@example.com",
+  //       isAdmin: false,
+  //     };
 
-    setUsersData((prev) => [...prev, newUser]);
-  };
+  //     setUsersData((prev) => [...prev, newUser]);
+  //   };
   return (
     <div className={styles.rootFormTasks}>
       <form id="formTasks">
-        <div className={`${styles.boxInput} ${styles.inputName}`}>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            onChange={hanldeFormData("name")}
-            value={formData.name}
-          />
-        </div>
-        <div className={`${styles.boxInput} ${styles.inputEmail}`}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            onChange={hanldeFormData("email")}
-            value={formData.email}
-          />
-        </div>
+        <BoxBaseInput
+          lbl="Name"
+          name="name"
+          type="text"
+          change={hanldeFormData("name")}
+          value={formData.name}
+          customStyles={styles.inputName}
+        />
+        <BoxBaseInput
+          lbl="Email"
+          name="email"
+          type="email"
+          change={hanldeFormData("email")}
+          value={formData.email}
+          customStyles={styles.inputEmail}
+        />
+
+        {/*  */}
+        <BoxBaseInput
+          lbl="Username"
+          name="username"
+          type="text"
+          change={hanldeFormData("username")}
+          value={formData.username}
+          customStyles={styles.inputUsername}
+        />
+        <BoxBaseInput
+          lbl="Email"
+          name="Admin"
+          type="checkbox"
+          change={hanldeFormData("email")}
+          value={formData.email}
+          customStyles={styles.inputEmail}
+        />
       </form>
-      <button onClick={addUser} className={styles.addButton}>
-        Add Random User
-      </button>
       <p>Current count: {usersData.length}</p>{" "}
     </div>
   );

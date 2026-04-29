@@ -22,29 +22,31 @@ import { UserCard } from "./components/task-card/task-card.component";
 import { FormTasks } from "./components/task-card/components";
 import { useState } from "react";
 
+type Role = "admin" | "user" | "subscriber";
+
 export interface User {
   id: number;
   name: string;
   username: string;
   email: string;
-  isAdmin?: boolean;
+  role: Role;
 }
 
 function App() {
-  const users = [
+  const users: User[] = [
     {
       id: 1,
       name: "Alice Freeman",
       username: "alice_dev",
       email: "alice@example.com",
-      isAdmin: true,
+      role: "admin",
     },
     {
       id: 2,
       name: "Bob Smith",
       username: "bob_codes",
       email: "bob@example.com",
-      isAdmin: false,
+      role: "user",
     },
   ];
 
