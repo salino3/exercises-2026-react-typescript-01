@@ -19,9 +19,18 @@ import { AppProvider } from "./context/provider";
 import { Timer } from "./components/timer/timer.component";
 import { TaskDashboard } from "./components/task-03/task-03.component";
 import { UserCard } from "./components/task-card/task-card.component";
+import { FormTasks } from "./components/task-card/components";
+import { useState } from "react";
+
+export interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  isAdmin?: boolean; // Optional property
+}
 
 function App() {
-  // 1. Data: The Father holds the information
   const users = [
     {
       id: 1,
@@ -39,6 +48,8 @@ function App() {
     },
   ];
 
+  const [usersData, setUsersData] = useState<User[]>(users);
+
   // 2. Logic: The Father defines what happens during an event
   const handleSendMessage = (name: string) => {
     alert(`Message sent to ${name}!`);
@@ -52,8 +63,8 @@ function App() {
       {/* <Greeting name="" /> */}
 
       <div style={{ padding: "2rem", display: "flex", gap: "1rem" }}>
-        {/* 3. Rendering: The Father loops through data and creates Children */}
-        {users.map((u) => (
+        <FormTasks usersData={usersData} setUsersData={setUsersData} />
+        {usersData.map((u) => (
           <UserCard
             key={u.id}
             user={u}
