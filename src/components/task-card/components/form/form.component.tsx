@@ -54,7 +54,7 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
 
   return (
     <div className={styles.rootFormTasks}>
-      <form onSubmit={hanldeSubmit} id="formTasks">
+      <form onSubmit={hanldeSubmit} className={styles.formTasks}>
         <BoxBaseInput
           lbl="Name"
           name="name"

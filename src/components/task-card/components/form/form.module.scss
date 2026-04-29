@@ -5,6 +5,17 @@
   align-items: center;
   gap: 0.5rem;
 
-  .inputName {
+  .formTasks {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 450px;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    .inputRole {
+      width: 188px;
+      box-sizing: border-box;
+    }
   }
 }
