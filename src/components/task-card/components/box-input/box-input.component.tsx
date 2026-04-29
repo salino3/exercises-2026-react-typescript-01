@@ -19,6 +19,7 @@ export const BoxBaseInput: React.FC<Props> = (props) => {
       <input
         type={type}
         checked={checked}
+        placeholder={lbl}
         name={name}
         id={name}
         onChange={change}
