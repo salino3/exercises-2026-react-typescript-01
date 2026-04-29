@@ -16,14 +16,16 @@ export interface UserForm {
   role: Role;
 }
 
+const intialFormData: UserForm = {
+  id: null,
+  name: "",
+  username: "",
+  email: "",
+  role: "user",
+};
+
 export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
-  const [formData, setFormData] = useState<UserForm>({
-    id: null,
-    name: "",
-    username: "",
-    email: "",
-    role: "user",
-  });
+  const [formData, setFormData] = useState<UserForm>(intialFormData);
 
   const hanldeFormData =
     (key: keyof UserForm) => (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,9 +43,18 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
       }
     };
 
+  //
+  function hanldeSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    setUsersData((prev) => [...prev, { ...formData, id: Date.now() }]);
+
+    setFormData(intialFormData);
+  }
+
   return (
     <div className={styles.rootFormTasks}>
-      <form id="formTasks">
+      <form onSubmit={hanldeSubmit} id="formTasks">
         <BoxBaseInput
           lbl="Name"
           name="name"
@@ -76,6 +87,7 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
           checked={formData.role === "subscriber"}
           customStyles={styles.inputRole}
         />
+        <button type="submit">Submit Data</button>
       </form>
       <p>Current count: {usersData.length}</p>
     </div>

@@ -15,7 +15,6 @@ interface UserProps {
 }
 
 export const UserCard: React.FC<UserProps> = ({ user, onSendMessage }) => {
-  console.log("XXX", user);
   return (
     <div className={`user-card ${user.role === "admin" ? "admin-border" : ""}`}>
       <div className="user-info">
