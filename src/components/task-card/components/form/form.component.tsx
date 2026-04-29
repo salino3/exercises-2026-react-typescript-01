@@ -35,7 +35,7 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
   // Create a handler function
   const addUser = () => {
     const newUser: User = {
-      id: Date.now(), // Generate a unique ID
+      id: Date.now(),
       name: "New User",
       username: "user_name",
       email: "new@example.com",
@@ -55,6 +55,16 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
             id="name"
             onChange={hanldeFormData("name")}
             value={formData.name}
+          />
+        </div>
+        <div className={`${styles.boxInput} ${styles.inputEmail}`}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            onChange={hanldeFormData("email")}
+            value={formData.email}
           />
         </div>
       </form>
