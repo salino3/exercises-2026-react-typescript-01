@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { User } from "../../../../App";
 import styles from "./form.module.scss";
 
@@ -7,8 +7,30 @@ interface Props {
   setUsersData: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
+interface UserForm {
+  id: number | null;
+  name: string;
+  username: string;
+  email: string;
+  isAdmin?: boolean;
+}
+
 export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
-  console.log("users", usersData);
+  const [formData, setFormData] = useState<UserForm>({
+    id: null,
+    name: "",
+    username: "",
+    email: "",
+    isAdmin: false,
+  });
+
+  const hanldeFormData = (key: keyof UserForm) => (event: any) => {
+    const { value } = event.target;
+    setFormData((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
 
   // Create a handler function
   const addUser = () => {
@@ -20,11 +42,22 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
       isAdmin: false,
     };
 
-    // Update the Father's state
     setUsersData((prev) => [...prev, newUser]);
   };
   return (
     <div className={styles.rootFormTasks}>
+      <form id="formTasks">
+        <div className={`${styles.boxInput} ${styles.inputName}`}>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            onChange={hanldeFormData("name")}
+            value={formData.name}
+          />
+        </div>
+      </form>
       <button onClick={addUser} className={styles.addButton}>
         Add Random User
       </button>

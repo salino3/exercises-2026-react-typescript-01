@@ -27,7 +27,7 @@ export interface User {
   name: string;
   username: string;
   email: string;
-  isAdmin?: boolean; // Optional property
+  isAdmin?: boolean;
 }
 
 function App() {
@@ -70,7 +70,7 @@ function App() {
           gap: "1rem",
         }}
       >
-        {usersData.map((u) => (
+        {usersData.map((u: User) => (
           <UserCard
             key={u.id}
             user={u}
