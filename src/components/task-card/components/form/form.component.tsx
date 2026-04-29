@@ -7,7 +7,7 @@ interface Props {
   setUsersData: React.Dispatch<React.SetStateAction<User[]>>;
 }
 
-interface UserForm {
+export interface UserForm {
   id: number | null;
   name: string;
   username: string;
