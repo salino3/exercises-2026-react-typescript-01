@@ -18,15 +18,50 @@ import { ChatWindow } from "./components/chat-window/chat-window.component";
 import { AppProvider } from "./context/provider";
 import { Timer } from "./components/timer/timer.component";
 import { TaskDashboard } from "./components/task-03/task-03.component";
+import { UserCard } from "./components/task-card/task-card.component";
 
 function App() {
+  // 1. Data: The Father holds the information
+  const users = [
+    {
+      id: 1,
+      name: "Alice Freeman",
+      username: "alice_dev",
+      email: "alice@example.com",
+      isAdmin: true,
+    },
+    {
+      id: 2,
+      name: "Bob Smith",
+      username: "bob_codes",
+      email: "bob@example.com",
+      isAdmin: false,
+    },
+  ];
+
+  // 2. Logic: The Father defines what happens during an event
+  const handleSendMessage = (name: string) => {
+    alert(`Message sent to ${name}!`);
+  };
+
   // function onLogin(username: string, role: string) {
   //   console.log("onLogin: ", username, role);
   // }
   return (
     <div className="main">
-      <Greeting name="" />
-      <TaskDashboard />
+      {/* <Greeting name="" /> */}
+
+      <div style={{ padding: "2rem", display: "flex", gap: "1rem" }}>
+        {/* 3. Rendering: The Father loops through data and creates Children */}
+        {users.map((u) => (
+          <UserCard
+            key={u.id}
+            user={u}
+            onSendMessage={() => handleSendMessage(u.name)}
+          />
+        ))}
+      </div>
+      {/* <TaskDashboard /> */}
       {/* <Counter />
       <UserProfile userId="9" /> */}
       {/* <ListProducts /> */}
