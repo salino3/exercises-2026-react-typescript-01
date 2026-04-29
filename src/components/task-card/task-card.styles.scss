@@ -1,0 +1,55 @@
+$primary-blue: #007bff;
+$gray-text: #666;
+$admin-gold: #ffcc00;
+
+.user-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-width: 300px;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  &.admin-border {
+    border: 2px solid $admin-gold;
+  }
+
+  .user-info {
+    h3 {
+      margin: 0 0 0.5rem 0;
+      color: #333;
+    }
+
+    p {
+      margin: 0;
+      color: $gray-text;
+      font-size: 0.9rem;
+    }
+
+    .email {
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .actions {
+    margin-top: 1.2rem;
+
+    .msg-btn {
+      background-color: $primary-blue;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:active {
+        background-color: darken($primary-blue, 10%);
+      }
+    }
+  }
+}

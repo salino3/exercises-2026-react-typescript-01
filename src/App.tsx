@@ -18,15 +18,71 @@ import { ChatWindow } from "./components/chat-window/chat-window.component";
 import { AppProvider } from "./context/provider";
 import { Timer } from "./components/timer/timer.component";
 import { TaskDashboard } from "./components/task-03/task-03.component";
+import { UserCard } from "./components/task-card/task-card.component";
+import { FormTasks } from "./components/task-card/components";
+import { useState } from "react";
+
+export type Role = "admin" | "user" | "subscriber";
+
+export interface User {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  role: Role;
+}
 
 function App() {
+  const users: User[] = [
+    {
+      id: 1,
+      name: "Alice Freeman",
+      username: "alice_dev",
+      email: "alice@example.com",
+      role: "admin",
+    },
+    {
+      id: 2,
+      name: "Bob Smith",
+      username: "bob_codes",
+      email: "bob@example.com",
+      role: "user",
+    },
+  ];
+
+  const [usersData, setUsersData] = useState<User[]>(users);
+
+  // 2. Logic: The Father defines what happens during an event
+  const handleSendMessage = (name: string) => {
+    alert(`Message sent to ${name}!`);
+  };
+
   // function onLogin(username: string, role: string) {
   //   console.log("onLogin: ", username, role);
   // }
   return (
     <div className="main">
-      <Greeting name="" />
-      <TaskDashboard />
+      {/* <Greeting name="" /> */}
+
+      <FormTasks usersData={usersData} setUsersData={setUsersData} />
+      <div
+        style={{
+          padding: "0.5rem",
+          display: "flex",
+          gap: "1rem",
+          flexWrap: "wrap",
+          justifyContent: "center",
+        }}
+      >
+        {usersData.map((u: User) => (
+          <UserCard
+            key={u.id}
+            user={u}
+            onSendMessage={() => handleSendMessage(u.name)}
+          />
+        ))}
+      </div>
+      {/* <TaskDashboard /> */}
       {/* <Counter />
       <UserProfile userId="9" /> */}
       {/* <ListProducts /> */}
