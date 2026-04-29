@@ -70,6 +70,8 @@ function App() {
           padding: "0.5rem",
           display: "flex",
           gap: "1rem",
+          flexWrap: "wrap",
+          justifyContent: "center",
         }}
       >
         {usersData.map((u: User) => (

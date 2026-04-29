@@ -16,6 +16,16 @@
     .inputRole {
       width: 188px;
       box-sizing: border-box;
+      cursor: pointer;
+
+      label {
+        padding-bottom: 0.5rem;
+      }
+
+      input[type="checkbox"] {
+        margin-left: 0.5rem;
+        transform: scale(1.8);
+      }
     }
   }
 }

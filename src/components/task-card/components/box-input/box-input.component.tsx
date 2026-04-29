@@ -14,13 +14,13 @@ export const BoxBaseInput: React.FC<Props> = (props) => {
   const { customStyles, name, type, lbl, value, checked, change } = props;
 
   return (
-    <div className={`${styles.boxInput} ${customStyles}`}>
+    <div className={`${styles.boxInput} ${customStyles || ""}`}>
       <label htmlFor={name}>{lbl}</label>
       <input
         type={type}
         checked={checked}
         name={name}
-        id="name"
+        id={name}
         onChange={change}
         value={value}
       />
