@@ -62,8 +62,14 @@ function App() {
     <div className="main">
       {/* <Greeting name="" /> */}
 
-      <div style={{ padding: "2rem", display: "flex", gap: "1rem" }}>
-        <FormTasks usersData={usersData} setUsersData={setUsersData} />
+      <FormTasks usersData={usersData} setUsersData={setUsersData} />
+      <div
+        style={{
+          padding: "0.5rem",
+          display: "flex",
+          gap: "1rem",
+        }}
+      >
         {usersData.map((u) => (
           <UserCard
             key={u.id}
