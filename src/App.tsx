@@ -22,7 +22,7 @@ import { UserCard } from "./components/task-card/task-card.component";
 import { FormTasks } from "./components/task-card/components";
 import { useState } from "react";
 
-type Role = "admin" | "user" | "subscriber";
+export type Role = "admin" | "user" | "subscriber";
 
 export interface User {
   id: number;

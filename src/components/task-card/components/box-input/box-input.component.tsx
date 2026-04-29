@@ -5,18 +5,20 @@ interface Props {
   name: string;
   lbl: string;
   type?: React.HTMLInputTypeAttribute | undefined;
-  value: string | number | readonly string[] | undefined;
+  value?: string | number | readonly string[] | undefined;
+  checked?: boolean | undefined;
   change: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
 export const BoxBaseInput: React.FC<Props> = (props) => {
-  const { customStyles, name, type, lbl, value, change } = props;
+  const { customStyles, name, type, lbl, value, checked, change } = props;
 
   return (
     <div className={`${styles.boxInput} ${customStyles}`}>
       <label htmlFor={name}>{lbl}</label>
       <input
         type={type}
+        checked={checked}
         name={name}
         id="name"
         onChange={change}

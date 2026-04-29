@@ -1,7 +1,6 @@
 import React from "react";
+import type { Role } from "../../App";
 import "./task-card.styles.scss";
-
-type Role = "admin" | "user" | "subscriber";
 
 // Task 1: Define the shape of the 'user' prop
 interface UserProps {
@@ -10,7 +9,7 @@ interface UserProps {
     name: string;
     username: string;
     email: string;
-    role?: Role;
+    role: Role;
   };
   onSendMessage: () => void;
 }
