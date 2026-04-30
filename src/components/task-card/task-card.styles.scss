@@ -48,7 +48,7 @@ $admin-gold: #ffcc00;
       cursor: pointer;
 
       &:active {
-        background-color: darken($primary-blue, 10%);
+        background-color: $primary-blue;
       }
     }
   }
