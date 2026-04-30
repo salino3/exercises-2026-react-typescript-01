@@ -177,11 +177,11 @@ export const FormTasks: React.FC<Props> = ({ usersData, setUsersData }) => {
       </form>
 
       <p aria-live="polite" aria-atomic="true" role="status">
-        Current count: {usersData.length}
+        Current count:
         <span className="sr-only">
           {usersData.length === 0
             ? "No users added yet"
-            : `${usersData.length} user${usersData.length > 1 ? "s" : ""} in the list`}
+            : ` ${usersData.length} user${usersData.length > 1 ? "s" : ""} in the list`}
         </span>
       </p>
     </div>
