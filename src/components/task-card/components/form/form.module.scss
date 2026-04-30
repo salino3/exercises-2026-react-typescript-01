@@ -7,24 +7,31 @@
 
   .formTasks {
     display: flex;
-    flex-wrap: wrap;
-    max-width: 450px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
 
-    .inputRole {
-      width: 188px;
-      box-sizing: border-box;
-      cursor: pointer;
+    .formFieldset {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 450px;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
 
-      label {
-        padding-bottom: 0.5rem;
-      }
+      .inputRole {
+        width: 188px;
+        box-sizing: border-box;
+        cursor: pointer;
 
-      input[type="checkbox"] {
-        margin-left: 0.5rem;
-        transform: scale(1.8);
+        label {
+          padding-bottom: 0.5rem;
+        }
+
+        input[type="checkbox"] {
+          margin-left: 0.5rem;
+          transform: scale(1.8);
+        }
       }
     }
   }
