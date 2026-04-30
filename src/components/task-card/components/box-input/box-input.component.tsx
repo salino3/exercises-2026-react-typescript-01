@@ -29,10 +29,6 @@ export const BoxBaseInput: React.FC<Props> = (props) => {
     ariaDescribedBy,
   } = props;
 
-  const errorId = error ? `${name}-error` : undefined;
-  const describedBy =
-    [ariaDescribedBy, errorId].filter(Boolean).join(" ") || undefined;
-
   return (
     <div
       style={{
@@ -56,12 +52,12 @@ export const BoxBaseInput: React.FC<Props> = (props) => {
         disabled={disabled}
         aria-required={required}
         aria-invalid={error ? true : undefined}
-        aria-describedby={describedBy}
+        aria-describedby={ariaDescribedBy}
         aria-disabled={disabled}
       />
       {error && (
         <span
-          id={errorId}
+          id={ariaDescribedBy}
           className={styles.errorMessage}
           role="alert"
           aria-live="polite"
