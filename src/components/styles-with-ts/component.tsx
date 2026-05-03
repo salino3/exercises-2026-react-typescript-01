@@ -1,14 +1,14 @@
 import { useState } from "react";
 // import styles from "./styles.module.css";
-import "./component.styles.scss";
 // import { stylesTag } from "./styles";
-import clsx from "clsx";
+// import clsx from "clsx";
+import "./component.styles.scss";
 
 type StyleConfig = "red" | "blue" | "green";
 
 export const TestComponent = ({
   color = "blue",
-  cursor = "progress", //"pointer",
+  cursor = "progress", // "pointer",
 }: {
   color: StyleConfig;
   cursor: string;
@@ -16,6 +16,7 @@ export const TestComponent = ({
   const [isDimmed, setIsDimmed] = useState<boolean>(false);
   return (
     <div
+      //   style={stylesTag("blue")}
       className={"rootTestComponent"}
       //   className={clsx(styles.rootTestComponent)}
       style={
@@ -27,7 +28,7 @@ export const TestComponent = ({
       }
     >
       <div style={{ borderBottom: "solid", width: "100%" }}>
-        <strong>Hi there!</strong>
+        <strong>Hi there!</strong> &nbsp;
         <button onClick={() => setIsDimmed(!isDimmed)}>
           Toggle Brightness
         </button>
