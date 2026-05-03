@@ -7,10 +7,12 @@ import "./component.styles.scss";
 type StyleConfig = "red" | "blue" | "green";
 
 export const TestComponent = ({
-  color = "blue",
+  bgColor = "blue",
+  color = "red",
   cursor = "progress", // "pointer",
 }: {
-  color: StyleConfig;
+  bgColor: StyleConfig;
+  color: string;
   cursor: string;
 }) => {
   const [isDimmed, setIsDimmed] = useState<boolean>(false);
@@ -21,14 +23,23 @@ export const TestComponent = ({
       //   className={clsx(styles.rootTestComponent)}
       style={
         {
-          "--bg-color": color,
+          "--bg-color": bgColor,
           "--cursor": cursor,
           "--bright": isDimmed ? 0.1 : 0.9,
         } as React.CSSProperties
       }
     >
       <div style={{ borderBottom: "solid", width: "100%" }}>
-        <strong>Hi there!</strong> &nbsp;
+        <strong
+          style={
+            {
+              "--color": color,
+            } as React.CSSProperties
+          }
+        >
+          Hi there!
+        </strong>
+        &nbsp;
         <button onClick={() => setIsDimmed(!isDimmed)}>
           Toggle Brightness
         </button>
