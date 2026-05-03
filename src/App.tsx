@@ -21,6 +21,7 @@ import { TaskDashboard } from "./components/task-03/task-03.component";
 import { UserCard } from "./components/task-card/task-card.component";
 import { FormTasks } from "./components/task-card/components";
 import { useState } from "react";
+import { TestComponent } from "./components/styles-with-ts/component";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -63,7 +64,7 @@ function App() {
   return (
     <div className="main">
       {/* <Greeting name="" /> */}
-
+      <TestComponent />
       <FormTasks usersData={usersData} setUsersData={setUsersData} />
       <div
         style={{
