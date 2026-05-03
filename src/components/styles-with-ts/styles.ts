@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { type CSSProperties } from "react";
 
 // Definimos un tipo para los argumentos si quieres restringir colores
