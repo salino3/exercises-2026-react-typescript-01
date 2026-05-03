@@ -1,0 +1,29 @@
+.rootTestComponent {
+  background-color: var(--bg-color, gray);
+
+  --cursor: var(cursor);
+
+  padding: 5rem;
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+
+  /* filter: brightness(var(--bright)); default value is optional */
+  filter: brightness(var(--bright, 0.9));
+}
+
+.rootTestComponent:hover {
+  /* 
+    Here's the trick: var(--name, default-value)
+    If you don't send anything from React, it will use 'default'.
+  */
+  cursor: var(--cursor);
+}
+
+@media (max-width: 768px) {
+  .rootTestComponent {
+    padding: 2rem;
+    flex-direction: column;
+  }
+}
