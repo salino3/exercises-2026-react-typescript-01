@@ -1,9 +1,25 @@
-import type React from "react";
-import { stylesTag } from "./styles";
+import styles from "./styles.module.css";
+import clsx from "clsx";
 
-export const TestComponent: React.FC = () => {
+type StyleConfig = "red" | "blue" | "green";
+
+export const TestComponent = ({
+  color = "blue",
+  cursor = "progress", //"pointer",
+}: {
+  color: StyleConfig;
+  cursor: string;
+}) => {
   return (
-    <div style={stylesTag("red")} className="rootTestComponent">
+    <div
+      className={clsx(styles.rootTestComponent)}
+      style={
+        {
+          "--bg-color": color,
+          "--cursor": cursor,
+        } as React.CSSProperties
+      }
+    >
       <div style={{ borderBottom: "solid", width: "100%" }}>
         <strong>Hi there!</strong>
       </div>
