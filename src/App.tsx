@@ -22,6 +22,7 @@ import { UserCard } from "./components/task-card/task-card.component";
 import { FormTasks } from "./components/task-card/components";
 import { useState } from "react";
 import { TestComponent } from "./components/styles-with-ts/component";
+import { ExecuterClasses } from "./components/classes/executer-classes.component";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -63,10 +64,10 @@ function App() {
   // }
   return (
     <div className="main">
-      {/* <Greeting name="" /> */}
-      <TestComponent />
-      <FormTasks usersData={usersData} setUsersData={setUsersData} />
-      <div
+      <ExecuterClasses />
+      {/* <TestComponent  /> */}
+      {/* <FormTasks usersData={usersData} setUsersData={setUsersData} /> */}
+      {/* <div
         style={{
           padding: "0.5rem",
           display: "flex",
@@ -82,7 +83,9 @@ function App() {
             onSendMessage={() => handleSendMessage(u.name)}
           />
         ))}
-      </div>
+      </div> */}
+      {/* Old ones */}
+      {/* <Greeting name="" /> */}
       {/* <TaskDashboard /> */}
       {/* <Counter />
       <UserProfile userId="9" /> */}

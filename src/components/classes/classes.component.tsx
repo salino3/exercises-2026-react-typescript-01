@@ -1,4 +1,4 @@
-class Person {
+export class Person {
   protected name: string;
   protected surname: string;
   age: number;
@@ -12,4 +12,21 @@ class Person {
   getName = (): string => {
     return this.name;
   };
+}
+
+export class Worker extends Person {
+  work: string;
+  salary: number;
+
+  constructor(
+    name: string,
+    surname: string,
+    age: number,
+    work: string,
+    salary: number,
+  ) {
+    super(name, surname, age);
+    this.work = work;
+    this.salary = salary;
+  }
 }
