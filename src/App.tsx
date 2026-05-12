@@ -24,7 +24,8 @@ import { useState } from "react";
 import { TestComponent } from "./components/styles-with-ts/component";
 import { ExecuterClasses } from "./components/classes/executer-classes.component";
 import { AppTareas } from "./components/use/use-component";
-import { FormularioPago } from "./components/use-form-status/use-form-status.component";
+import { FormularioRegistro } from "./components/useActionState/useActionState.component";
+// import { FormularioPago } from "./components/use-form-status/use-form-status.component";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -67,8 +68,9 @@ function App() {
   return (
     <div className="main">
       <AppTareas />
-      <FormularioPago />
+      {/* <FormularioPago /> TODO: Fix it*/}
       <ExecuterClasses />
+      <FormularioRegistro />
       <TestComponent />
       {/* <FormTasks usersData={usersData} setUsersData={setUsersData} /> */}
       {/* <div
