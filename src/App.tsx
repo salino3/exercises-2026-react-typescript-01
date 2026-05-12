@@ -23,6 +23,7 @@ import { FormTasks } from "./components/task-card/components";
 import { useState } from "react";
 import { TestComponent } from "./components/styles-with-ts/component";
 import { ExecuterClasses } from "./components/classes/executer-classes.component";
+import { AppTareas } from "./components/use/use-component";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -64,6 +65,7 @@ function App() {
   // }
   return (
     <div className="main">
+      <AppTareas />
       <ExecuterClasses />
       <TestComponent />
       {/* <FormTasks usersData={usersData} setUsersData={setUsersData} /> */}
