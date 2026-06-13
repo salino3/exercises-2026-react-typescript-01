@@ -26,6 +26,7 @@ import { ExecuterClasses } from "./components/classes/executer-classes.component
 import { AppTareas } from "./components/use/use-component";
 import { FormularioRegistro } from "./components/useActionState/useActionState.component";
 import { VistaFormularios } from "./components/use-form-status/use-form-status.component";
+import { FinancialChart } from "./components_02/financial/FinancialChart";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -67,6 +68,8 @@ function App() {
   // }
   return (
     <div className="main">
+      {/* Experimental legacy chart running smoothly in React */}
+      <FinancialChart data={usersData} />
       <AppTareas />
       <VistaFormularios />
       <ExecuterClasses />
