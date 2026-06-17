@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
-// 1. TODO: Definisci l'interfaccia User qui sotto
 interface User {
   id: number;
   name: string;
@@ -10,9 +9,6 @@ interface User {
 export default function UserList() {
   const [usersData, setUsersData] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-
-  // 3. TODO: Usa useEffect per scaricare i dati da "https://jsonplaceholder.typicode.com/users"
-  // e salvarli nello stato al montaggio del componente.
 
   async function fetchData() {
     const result = fetch("https://jsonplaceholder.typicode.com/users");
@@ -24,8 +20,7 @@ export default function UserList() {
     fetchData().then((res) => setUsersData(res));
   }, []);
 
-  console.log("clog1", usersData);
-  // 4. TODO: Tipizza correttamente l'evento del cambio input (e)
+  //
   const handleSearchChange = (
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
   ) => {
@@ -34,10 +29,12 @@ export default function UserList() {
     setSearchTerm(value);
   };
 
-  // 5. TODO: Filtra gli utenti in base al searchTerm
-  const filteredUsers: User[] = usersData.filter((data: User) =>
-    data.name.toLowerCase().includes(searchTerm),
-  );
+  //
+  const filteredUsers: User[] = useMemo(() => {
+    return usersData.filter((data: User) =>
+      data.name.toLowerCase().includes(searchTerm),
+    );
+  }, [searchTerm, usersData]);
 
   return (
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
