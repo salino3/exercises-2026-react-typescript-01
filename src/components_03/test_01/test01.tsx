@@ -35,7 +35,9 @@ export default function UserList() {
   };
 
   // 5. TODO: Filtra gli utenti in base al searchTerm
-  const filteredUsers = usersData; // Sostituisci questo array vuoto con la logica di filtro
+  const filteredUsers: User[] = usersData.filter((data: User) =>
+    data.name.toLowerCase().includes(searchTerm),
+  );
 
   return (
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
