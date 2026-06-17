@@ -32,7 +32,7 @@ export default function UserList() {
   // useMemo for thousands of users
   const filteredUsers: User[] = useMemo(() => {
     return usersData.filter((data: User) =>
-      data.name.toLowerCase().includes(searchTerm),
+      data.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [searchTerm, usersData]);
 
