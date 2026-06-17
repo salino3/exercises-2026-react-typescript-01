@@ -18,9 +18,14 @@ export default function UserList() {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   async function fetchData() {
-    const result = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await result.json();
-    return data;
+    try {
+      const result = await fetch("https://jsonplaceholder.typicode.com/users");
+      const data = await result.json();
+      return data;
+    } catch (error: unknown) {
+      console.log(error instanceof Error);
+      return [];
+    }
   }
 
   useEffect(() => {
