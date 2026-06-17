@@ -8,8 +8,8 @@ interface User {
 }
 
 export default function UserList() {
-  // 2. TODO: Definisci gli stati per gli utenti (users) e per la stringa di ricerca (searchTerm)
-  // Ricordati di tipizzare lo useState degli utenti!
+  const [usersData, setUsersData] = useState<User[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   // 3. TODO: Usa useEffect per scaricare i dati da "https://jsonplaceholder.typicode.com/users"
   // e salvarli nello stato al montaggio del componente.
