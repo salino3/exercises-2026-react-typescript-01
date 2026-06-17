@@ -18,8 +18,8 @@ export default function UserList() {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   async function fetchData() {
-    const result = fetch("https://jsonplaceholder.typicode.com/users");
-    const data = (await result).json();
+    const result = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await result.json();
     return data;
   }
 
