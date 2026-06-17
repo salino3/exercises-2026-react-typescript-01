@@ -31,11 +31,23 @@ export default function PostBoard() {
     fetchData();
   }, []);
 
-  // 4. TODO: Secondo useEffect - Scatta SOLO quando cambia 'selectedId'
-  // Endpoint per il singolo post: `https://jsonplaceholder.typicode.com/posts/${selectedId}`
+  //
   useEffect(() => {
-    // Se selectedId è null, non fare nulla (return)
-    // Altrimenti fai la fetch del singolo post e salvalo in selectedPostDetails
+    const fetchPostById = async (selectedId: number) => {
+      try {
+        const result = await fetch(
+          `https://jsonplaceholder.typicode.com/posts/${selectedId}`,
+        );
+        const data: Post = await result.json();
+        setSelectedPostDetails(data);
+      } catch (error: unknown) {
+        console.log("Error:", error instanceof Error);
+      }
+
+      if (selectedId) {
+        fetchPostById(selectedId);
+      }
+    };
   }, [selectedId]);
 
   return (
