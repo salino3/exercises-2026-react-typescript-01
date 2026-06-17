@@ -15,9 +15,20 @@ export default function PostBoard() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>("");
 
-  // 3. TODO: Primo useEffect - Carica i 5 post iniziali al montaggio
   useEffect(() => {
-    // Gestisci isLoading, il try/catch per l'errore e il setPosts
+    async function fetchData() {
+      try {
+        const result = await fetch(
+          "https://jsonplaceholder.typicode.com/posts?_limit=5",
+        );
+        const data: Post[] = await result.json();
+        setPosts(data);
+      } catch (error: unknown) {
+        console.log("Error:", error instanceof Error);
+      }
+    }
+
+    fetchData();
   }, []);
 
   // 4. TODO: Secondo useEffect - Scatta SOLO quando cambia 'selectedId'
