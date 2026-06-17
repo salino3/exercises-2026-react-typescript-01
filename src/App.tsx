@@ -27,6 +27,7 @@ import { AppTareas } from "./components/use/use-component";
 import { FormularioRegistro } from "./components/useActionState/useActionState.component";
 import { VistaFormularios } from "./components/use-form-status/use-form-status.component";
 import { FinancialChart } from "./components_02/financial/FinancialChart";
+import UserList from "./components_03/test_01/test01";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -68,7 +69,9 @@ function App() {
   // }
   return (
     <div className="main">
-      {/* Experimental legacy chart running smoothly in React */}
+      {/* TEST Practice */}
+      <UserList />
+      {/* Experimental legacy CHART running smoothly in React */}
       <FinancialChart data={usersData} />
       <AppTareas />
       <VistaFormularios />
