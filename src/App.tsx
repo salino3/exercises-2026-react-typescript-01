@@ -28,6 +28,7 @@ import { FormularioRegistro } from "./components/useActionState/useActionState.c
 import { VistaFormularios } from "./components/use-form-status/use-form-status.component";
 import { FinancialChart } from "./components_02/financial/FinancialChart";
 import UserList from "./components_03/test_01/test01";
+import PostBoard from "./components_03/test_02/test02";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -71,6 +72,8 @@ function App() {
     <div className="main">
       {/* TEST Practice */}
       <UserList />
+      <PostBoard />
+
       {/* Experimental legacy CHART running smoothly in React */}
       <FinancialChart data={usersData} />
       <AppTareas />
