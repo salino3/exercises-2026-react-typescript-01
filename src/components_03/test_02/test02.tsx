@@ -28,6 +28,7 @@ export default function PostBoard() {
         setPosts(data);
       } catch (error: unknown) {
         console.log("Error:", error instanceof Error);
+        setIsError("Error. Try refreshing the web page");
       } finally {
         setIsLoading(false);
       }
@@ -48,6 +49,7 @@ export default function PostBoard() {
         setSelectedPostDetails(data);
       } catch (error: unknown) {
         console.log("Error:", error instanceof Error);
+        setIsError("Error. Try refreshing the web page");
       } finally {
         setIsLoadingDetails(false);
       }
@@ -58,7 +60,14 @@ export default function PostBoard() {
     }
   }, [selectedId]);
 
-  console.log(selectedId);
+  if (isError) {
+    return (
+      <div className="errorContainer">
+        <strong>{isError}</strong>
+      </div>
+    );
+  }
+
   return (
     <div
       style={{
@@ -68,9 +77,8 @@ export default function PostBoard() {
         gap: "40px",
       }}
     >
-      {/* SEZIONE LISTA POST */}
       <div style={{ flex: 1 }}>
-        <h2>I tuoi Post</h2>
+        <h2>Your Posts</h2>
 
         {isLoading ? (
           "Loading data..."
@@ -97,11 +105,10 @@ export default function PostBoard() {
         )}
       </div>
 
-      {/* SEZIONE DETTAGLIO */}
       <div
         style={{ flex: 1, borderLeft: "1px solid #eee", paddingLeft: "20px" }}
       >
-        <h2>Dettaglio Post</h2>
+        <h2>Post Detail</h2>
         {isLoadingDetails ? (
           "Loading details data..."
         ) : selectedPostDetails ? (
@@ -120,7 +127,7 @@ export default function PostBoard() {
             </p>
           </div>
         ) : (
-          <p>Seleziona un post dalla lista per vedere i dettagli.</p>
+          <p>Select a post from the list to see details..</p>
         )}
       </div>
     </div>
