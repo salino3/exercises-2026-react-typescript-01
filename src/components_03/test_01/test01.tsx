@@ -13,10 +13,17 @@ export default function UserList() {
 
   // 3. TODO: Usa useEffect per scaricare i dati da "https://jsonplaceholder.typicode.com/users"
   // e salvarli nello stato al montaggio del componente.
-  useEffect(() => {
-    // Fai la fetch qui
-  }, []);
 
+  async function fetchData() {
+    const result = fetch("https://jsonplaceholder.typicode.com/users");
+    const data = (await result).json();
+    return data;
+  }
+
+  useEffect(() => {
+    fetchData().then((res) => setUsersData(res));
+  }, []);
+  console.log("clog1", usersData);
   // 4. TODO: Tipizza correttamente l'evento del cambio input (e)
   const handleSearchChange = (e: any) => {
     // Aggiorna lo stato del searchTerm
