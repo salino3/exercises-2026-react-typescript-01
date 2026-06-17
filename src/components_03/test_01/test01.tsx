@@ -23,31 +23,41 @@ export default function UserList() {
   useEffect(() => {
     fetchData().then((res) => setUsersData(res));
   }, []);
+
   console.log("clog1", usersData);
   // 4. TODO: Tipizza correttamente l'evento del cambio input (e)
-  const handleSearchChange = (e: any) => {
-    // Aggiorna lo stato del searchTerm
+  const handleSearchChange = (
+    e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
+  ) => {
+    const { value } = e?.target;
+
+    setSearchTerm(value);
   };
 
   // 5. TODO: Filtra gli utenti in base al searchTerm
-  const filteredUsers = []; // Sostituisci questo array vuoto con la logica di filtro
+  const filteredUsers = usersData; // Sostituisci questo array vuoto con la logica di filtro
 
   return (
     <div style={{ padding: "20px", fontFamily: "sans-serif" }}>
       <h2>Lista Utenti</h2>
 
-      {/* Input di ricerca */}
       <input
         type="text"
         placeholder="Cerca utente per nome..."
         onChange={handleSearchChange}
+        value={searchTerm}
+        name="name"
         style={{ padding: "8px", marginBottom: "20px", width: "300px" }}
       />
-
-      {/* Lista renderizzata */}
       <ul>
-        {/* 6. TODO: Fai il .map() di filteredUsers per mostrare i nomi degli utenti */}
-        {/* Ricordati di inserire la proprietà 'key' nel tag <li> */}
+        {filteredUsers && filteredUsers.length > 0
+          ? filteredUsers.map((user: User) => (
+              <li key={user.id}>
+                <span style={{ color: "green" }}>Name:</span>{" "}
+                <span>{user.name}</span>
+              </li>
+            ))
+          : "No users found"}
       </ul>
     </div>
   );
