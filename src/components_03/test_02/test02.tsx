@@ -55,7 +55,7 @@ export default function PostBoard() {
       }
     };
 
-    if (selectedId) {
+    if (selectedId !== null) {
       fetchPostById(selectedId);
     }
   }, [selectedId]);
