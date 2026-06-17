@@ -12,8 +12,8 @@ export default function PostBoard() {
   const [selectedPostDetails, setSelectedPostDetails] = useState<Post | null>(
     null,
   );
-
-  // 2. TODO: Definisci gli stati per isLoading (boolean) ed error (string | null)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<string | null>("");
 
   // 3. TODO: Primo useEffect - Carica i 5 post iniziali al montaggio
   useEffect(() => {
