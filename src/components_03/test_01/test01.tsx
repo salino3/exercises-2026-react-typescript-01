@@ -6,6 +6,13 @@ interface User {
   email: string;
 }
 
+// Senior version
+const cleanString = (str: string) =>
+  str
+    .toLowerCase()
+    .normalize("NFD") // Breaks accented characters into their basic elements (e.g., 'ò' becomes 'o' + 'nagging accent')
+    .replace(/[\u0300-\u036f]/g, ""); // Removes all accent symbols leaving only the base letter
+
 export default function UserList() {
   const [usersData, setUsersData] = useState<User[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -31,9 +38,13 @@ export default function UserList() {
 
   // useMemo for thousands of users
   const filteredUsers: User[] = useMemo(() => {
-    return usersData.filter((data: User) =>
-      data.name.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
+    const cleanedSearch: string = cleanString(searchTerm);
+
+    return usersData.filter((data: User) => {
+      const cleanedName: string = cleanString(data.name);
+
+      return cleanedName.includes(cleanedSearch);
+    });
   }, [searchTerm, usersData]);
 
   return (
