@@ -13,18 +13,23 @@ export default function PostBoard() {
     null,
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoadingDetails, setIsLoadingDetails] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>("");
 
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoading(true);
         const result = await fetch(
           "https://jsonplaceholder.typicode.com/posts?_limit=5",
         );
         const data: Post[] = await result.json();
+
         setPosts(data);
       } catch (error: unknown) {
         console.log("Error:", error instanceof Error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -35,6 +40,7 @@ export default function PostBoard() {
   useEffect(() => {
     const fetchPostById = async (selectedId: number) => {
       try {
+        setIsLoadingDetails(true);
         const result = await fetch(
           `https://jsonplaceholder.typicode.com/posts/${selectedId}`,
         );
@@ -42,14 +48,17 @@ export default function PostBoard() {
         setSelectedPostDetails(data);
       } catch (error: unknown) {
         console.log("Error:", error instanceof Error);
-      }
-
-      if (selectedId) {
-        fetchPostById(selectedId);
+      } finally {
+        setIsLoadingDetails(false);
       }
     };
+
+    if (selectedId) {
+      fetchPostById(selectedId);
+    }
   }, [selectedId]);
 
+  console.log(selectedId);
   return (
     <div
       style={{
@@ -63,26 +72,29 @@ export default function PostBoard() {
       <div style={{ flex: 1 }}>
         <h2>I tuoi Post</h2>
 
-        {/* 5. TODO: Gestisci visivamente il loading ed eventuali errori qui */}
-
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {posts.map((post) => (
-            <li
-              key={post.id}
-              // 6. TODO: Gestisci il click per impostare il selectedId
-              onClick={() => {}}
-              style={{
-                padding: "10px",
-                border: "1px solid #ccc",
-                marginBottom: "10px",
-                cursor: "pointer",
-                backgroundColor: selectedId === post.id ? "#e0f7fa" : "#fff",
-              }}
-            >
-              <strong>{post.title}</strong>
-            </li>
-          ))}
-        </ul>
+        {isLoading ? (
+          "Loading data..."
+        ) : (
+          <ul style={{ listStyle: "none", padding: 0 }}>
+            {posts.map((post: Post) => (
+              <li
+                key={post.id}
+                onClick={() => setSelectedId(post.id)}
+                style={{
+                  padding: "10px",
+                  border: "1px solid #cccccc",
+                  marginBottom: "10px",
+                  cursor: "pointer",
+                  color: "blue",
+                  backgroundColor:
+                    selectedId === post.id ? "#16abbe" : "#ffffff",
+                }}
+              >
+                <strong>{post.title}</strong>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* SEZIONE DETTAGLIO */}
@@ -90,13 +102,15 @@ export default function PostBoard() {
         style={{ flex: 1, borderLeft: "1px solid #eee", paddingLeft: "20px" }}
       >
         <h2>Dettaglio Post</h2>
-
-        {selectedPostDetails ? (
+        {isLoadingDetails ? (
+          "Loading details data..."
+        ) : selectedPostDetails ? (
           <div
             style={{
               padding: "15px",
               backgroundColor: "#f9f9f9",
               borderRadius: "5px",
+              color: "blue",
             }}
           >
             <h3>{selectedPostDetails.title}</h3>

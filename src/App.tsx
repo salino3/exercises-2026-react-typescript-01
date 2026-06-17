@@ -71,8 +71,8 @@ function App() {
   return (
     <div className="main">
       {/* TEST Practice */}
-      <UserList />
       <PostBoard />
+      <UserList />
 
       {/* Experimental legacy CHART running smoothly in React */}
       <FinancialChart data={usersData} />
