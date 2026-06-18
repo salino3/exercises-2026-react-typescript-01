@@ -118,3 +118,22 @@ const newProductForm: ProductForm = {
   imageUrl: "https://images.com/shoes.png",
   sku: "SHOES-RUN-01",
 };
+
+const myProduct: Partial<Product> = {
+  id: "a3Dr",
+  name: "test-name",
+  price: 50,
+};
+
+const myReadonlyProduct: Readonly<Partial<Product>> = {
+  id: "a3Dr",
+  name: "test-name",
+  price: 50,
+};
+
+myProduct.price = 10;
+console.log(myProduct.price);
+
+// It gives error but the value is modifyied
+myReadonlyProduct.price = 10;
+console.log(myReadonlyProduct.price);
