@@ -38,23 +38,23 @@ export default function PostBoard() {
   }, []);
 
   //
-  useEffect(() => {
-    const fetchPostById = async (selectedId: number) => {
-      try {
-        setIsLoadingDetails(true);
-        const result = await fetch(
-          `https://jsonplaceholder.typicode.com/posts/${selectedId}`,
-        );
-        const data: Post = await result.json();
-        setSelectedPostDetails(data);
-      } catch (error: unknown) {
-        console.log("Error:", error instanceof Error);
-        setIsError("Error. Try refreshing the web page");
-      } finally {
-        setIsLoadingDetails(false);
-      }
-    };
+  const fetchPostById = async (selectedId: number) => {
+    try {
+      setIsLoadingDetails(true);
+      const result = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${selectedId}`,
+      );
+      const data: Post = await result.json();
+      setSelectedPostDetails(data);
+    } catch (error: unknown) {
+      console.log("Error:", error instanceof Error);
+      setIsError("Error. Try refreshing the web page");
+    } finally {
+      setIsLoadingDetails(false);
+    }
+  };
 
+  useEffect(() => {
     if (selectedId !== null) {
       fetchPostById(selectedId);
     }
