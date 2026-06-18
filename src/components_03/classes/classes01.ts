@@ -125,7 +125,7 @@ console.log(myGame.score);
 // -----
 class MathUtils {
   // A static property (a shared constant)
-  public static PI: number = 3.14159;
+  public static readonly PI: number = 3.14159;
 
   // A static method: it doesn't need 'this', it just takes inputs and returns output
   public static convertCelsiusToFahrenheit(celsius: number): number {
