@@ -148,6 +148,21 @@ interface User {
 
 const user: User = { name: "Aldo", age: 30 };
 
+//
+interface CustomRequest<T> {
+  payload: T;
+  timestamp: number;
+}
+
+interface PayloadProp {name:string; email: string}
+
+const request:CustomRequest<PayloadProp> = {
+ timestamp:3232,
+ payload:  {email:"gigi@gmail.com", name:"Gigi"}
+}
+
+
+
 // enum creates a lot of code in runtime
 export const STATUS : Record<string,string  > = {
   Pending: 'PENDING',
