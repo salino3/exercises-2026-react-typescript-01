@@ -13,7 +13,7 @@ function getFirstElement<T>(arr: T[]): T {
 
 getFirstElement([2, "a", "b", 3]);
 
-//
+// Omit
 interface UserDatabase {
   id: string;
   name: string;
@@ -39,4 +39,82 @@ interface UserRegistration extends Omit<
   passwordHash: string;
 }
 
+// Pick
+interface UserDetailedProfile {
+  id: string;
+  name: string;
+  surname: string;
+  email: string;
+  avatarUrl: string;
+  phoneNumber: string;
+  address: string;
+  fiscalCode: string;
+  creditCardToken: string;
+  createdAt: Date;
+}
+
+interface UserCardFields {
+  name: any;
+  email: any;
+  avatarUrl: any;
+}
+
+interface UserCardPreview extends Pick<
+  UserDetailedProfile,
+  keyof UserCardFields
+> {
+  // Add property isOnline
+  isOnline: boolean;
+}
+
+//-------------------
+interface Product {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  imageUrl: string;
+  sku: string;
+  createdAt: Date;
+}
+
+interface ProductFieldsToUse {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+}
+
+// interface ProductFieldsToUse extends Partial<Pick<Product, 'id' | 'name' | 'price' | 'imageUrl'>> {}
+
+interface CartItem extends Pick<Product, keyof ProductFieldsToUse> {
+  quantity: number;
+}
+
 //
+interface ProductToRemove {
+  id: string;
+  slug: string;
+  createdAt: Date;
+}
+
+interface ProductForm extends Omit<Product, keyof ProductToRemove> {}
+
+const itemInCart: CartItem = {
+  id: "prod-100",
+  name: "T-Shirt Standard",
+  price: 19.99,
+  imageUrl: "https://images.com/tshirt.png",
+  quantity: 2, // Aggiunta correttamente
+};
+
+const newProductForm: ProductForm = {
+  name: "Scarpe da corsa",
+  description: "Scarpe comodissime per maratone",
+  price: 89.99,
+  stock: 50,
+  imageUrl: "https://images.com/shoes.png",
+  sku: "SHOES-RUN-01",
+};
