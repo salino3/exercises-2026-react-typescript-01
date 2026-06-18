@@ -137,3 +137,27 @@ console.log(myProduct.price);
 // It gives error but the value is modifyied
 myReadonlyProduct.price = 10;
 console.log(myReadonlyProduct.price);
+
+interface User {
+  name: string;
+}
+
+interface User {
+  age: number;
+}
+
+const user: User = { name: "Aldo", age: 30 };
+
+// enum creates a lot of code in runtime
+export const STATUS : Record<string,string  > = {
+  Pending: 'PENDING',
+  Success: 'SUCCESS',
+  Error: 'ERROR'
+} as const;
+
+ export type StatusType = typeof STATUS[keyof typeof STATUS]; 
+ 
+
+return  (
+    <p>Stato attuale: {STATUS.Success}</p>
+ )
