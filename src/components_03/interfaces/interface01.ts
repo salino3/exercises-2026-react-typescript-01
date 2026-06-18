@@ -161,7 +161,11 @@ const request:CustomRequest<PayloadProp> = {
  payload:  {email:"gigi@gmail.com", name:"Gigi"}
 }
 
+type IsString<T> = T extends string ? true : 9 ;
 
+type ResultA = IsString<BigInt | boolean>;
+
+const result: ResultA =   9
 
 // enum creates a lot of code in runtime
 export const STATUS : Record<string,string  > = {
