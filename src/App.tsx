@@ -29,6 +29,7 @@ import { VistaFormularios } from "./components/use-form-status/use-form-status.c
 import { FinancialChart } from "./components_02/financial/FinancialChart";
 import UserList from "./components_03/test_01/test01";
 import PostBoard from "./components_03/test_02/test02";
+import { UserTable } from "./components_03/test_03/test03";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -71,6 +72,7 @@ function App() {
   return (
     <div className="main">
       {/* TEST Practice */}
+      <UserTable />
       <PostBoard />
       <UserList />
 
