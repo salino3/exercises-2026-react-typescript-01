@@ -1,3 +1,5 @@
+// Utility Typescript:
+
 // Partial<T>: Makes all properties of an interface optional (e.g., useful for
 // Update/Patch functions).
 
@@ -6,6 +8,8 @@
 // Omit<T, K>: Unlike Pick, creates a type by excluding some properties.
 
 // Readonly<T>: Makes all properties immutable.
+
+// Exclude<Union, Value>: Using a type excluding some values
 
 function getFirstElement<T>(arr: T[]): T {
   return arr[0];
@@ -175,8 +179,20 @@ export const STATUS   = {
 } as const satisfies Record<string, string>;
 
  export type StatusType = typeof STATUS[keyof typeof STATUS]; 
- 
 
+ interface Cat {
+ name: string;
+ years: number;
+ status: Exclude<StatusType ,  typeof STATUS.Error >
+ }
+ 
+ const cat:  Cat  = {
+name: "Nuvola",
+years: 7,
+status: "SUCCESS"
+ }
+ 
 return  (
     <p>Stato attuale: {STATUS.Success}</p>
  )
+

@@ -88,3 +88,25 @@ const prioritySLA02: PrioritySLAEnum = {
 
 // 3.
 type UrgentTicket = Omit<SupportTicket, "priority"> & { pagerDutyId: string };
+
+// ---
+// enum creates a lot of code in runtime
+export const STATUS = {
+  Pending: "PENDING",
+  Success: "SUCCESS",
+  Error: "ERROR",
+} as const satisfies Record<string, string>;
+
+export type StatusType = (typeof STATUS)[keyof typeof STATUS];
+
+interface Worker {
+  name: string;
+  years: number;
+  status: Exclude<StatusType, typeof STATUS.Pending>;
+}
+
+const worker: Worker = {
+  name: "Aldo",
+  years: 27,
+  status: "SUCCESS",
+};

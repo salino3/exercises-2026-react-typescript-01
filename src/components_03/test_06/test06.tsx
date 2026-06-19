@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 
+const CategoryEnum = {
+  ELETRONIC: "Elettronica",
+  CLOTHES: "Abbigliamento",
+  HOME: "Casa",
+  "": "",
+} as const;
+
+type CategoryEnumTypes = (typeof CategoryEnum)[keyof typeof CategoryEnum];
+
 interface Product {
   id: string;
   name: string;
   price: number;
-  category: "Elettronica" | "Abbigliamento" | "Casa";
+  category: Exclude<CategoryEnumTypes, "">;
   isAvailable: boolean;
 }
 
@@ -31,6 +40,7 @@ export default function ProductManager() {
 
   const [newName, setNewName] = useState<string>("");
   const [newPrice, setNewPrice] = useState<number | null>(null);
+  const [newCategory, setNewCategory] = useState<CategoryEnumTypes>("");
 
   const handleNameChange = (
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
@@ -55,19 +65,20 @@ export default function ProductManager() {
 
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("clog1", newName, newPrice);
-    if (newName && newPrice) {
+    console.log("clog1", newName, newPrice, newCategory);
+    if (newName && newPrice && newCategory && newCategory.length > 0) {
       const newProduct: Product = {
         id: products[products.length - 1].id + 1,
         isAvailable: true,
         name: newName,
         price: newPrice,
-        category: "Elettronica",
+        category: newCategory,
       };
 
       setProducts((prev: Product[]) => [newProduct, ...prev]);
       setNewName("");
       setNewPrice(null);
+      setNewCategory("");
     }
   };
 
@@ -117,6 +128,25 @@ export default function ProductManager() {
             name="price"
             onChange={handlePriceChange}
           />
+          <label htmlFor="category">Choose a category:</label>
+
+          <select
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setNewCategory(e.target.value as CategoryEnumTypes)
+            }
+            value={newCategory}
+            name="category"
+            id="category"
+          >
+            <option hidden value={""}>
+              -
+            </option>
+            {Object.values(CategoryEnum).map((o: CategoryEnumTypes) => (
+              <option key={o} value={o}>
+                {o}
+              </option>
+            ))}
+          </select>
         </fieldset>
         <button type="submit">Submit</button>
       </form>
