@@ -172,7 +172,7 @@ export const STATUS   = {
   Pending: 'PENDING',
   Success: 'SUCCESS',
   Error: 'ERROR'
-} as const;
+} as const satisfies Record<string, string>;
 
  export type StatusType = typeof STATUS[keyof typeof STATUS]; 
  
