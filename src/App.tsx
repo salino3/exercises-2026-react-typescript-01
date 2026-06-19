@@ -33,6 +33,7 @@ import { UserTable } from "./components_03/test_03/test03";
 import { DataAnalyzer } from "./components_03/test_04/test04";
 import { UserDashboard } from "./components_03/test-05/test05";
 import ProductManager from "./components_03/test_06/test06";
+import * as DataFile from "./component_04/test_06/test07";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -72,6 +73,7 @@ function App() {
   // function onLogin(username: string, role: string) {
   //   console.log("onLogin: ", username, role);
   // }
+
   return (
     <div className="main">
       {/* TEST Practice */}
