@@ -8,17 +8,21 @@ interface UserProfile {
 }
 
 // 1.
-interface UpdatePayload extends Partial<
+type UpdatePayload = Partial<
   Omit<UserProfile, "id" | "isAdmin" | "createdAt">
-> {}
+> & {
+  fofo: string;
+};
 
-const updateUser: UpdatePayload = {};
+const updateUser: UpdatePayload = { fofo: "Fofo" };
 
 // 2.
-interface UserPreview extends Pick<UserProfile, "username" | "avatarUrl"> {}
+type UserPreview = Pick<UserProfile, "username" | "avatarUrl"> & {
+  fofo: string;
+};
 
 // 3.
-interface RegistrationPayload extends Omit<UserProfile, "id" | "createdAt"> {}
+type RegistrationPayload = Omit<UserProfile, "id" | "createdAt">;
 
 // 4.
-interface SecureUser extends Readonly<UserProfile> {}
+type SecureUser = Readonly<UserProfile>;
