@@ -37,7 +37,7 @@ const TicketPriority = {
 
 type TicketPriorityType = (typeof TicketPriority)[keyof typeof TicketPriority];
 
-const TicketStatus: Record<string, string> = {
+const TicketStatus = {
   OPEN: "OPEN",
   IN_PROGRESS: "IN_PROGRESS",
   RESOLVED: "RESOLVED",
