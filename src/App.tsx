@@ -32,6 +32,7 @@ import PostBoard from "./components_03/test_02/test02";
 import { UserTable } from "./components_03/test_03/test03";
 import { DataAnalyzer } from "./components_03/test_04/test04";
 import { UserDashboard } from "./components_03/test-05/test05";
+import ProductManager from "./components_03/test_06/test06";
 
 export type Role = "admin" | "user" | "subscriber";
 
@@ -74,6 +75,8 @@ function App() {
   return (
     <div className="main">
       {/* TEST Practice */}
+      <ProductManager />
+      <hr />
       <UserDashboard />
       <DataAnalyzer data={10} />
       <UserTable />
