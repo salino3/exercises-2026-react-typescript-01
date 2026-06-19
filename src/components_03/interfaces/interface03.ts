@@ -15,3 +15,10 @@ interface UpdatePayload extends Partial<
 const updateUser: UpdatePayload = {};
 
 // 2.
+interface UserPreview extends Pick<UserProfile, "username" | "avatarUrl"> {}
+
+// 3.
+interface RegistrationPayload extends Omit<UserProfile, "id" | "createdAt"> {}
+
+// 4.
+interface SecureUser extends Readonly<UserProfile> {}
