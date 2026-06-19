@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface User {
   id: number;
@@ -15,16 +15,10 @@ const mockData: User[] = [
 export function UserDashboard() {
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState("");
-  const [adminCount, setAdminCount] = useState(0);
 
   useEffect(() => {
     setUsers(mockData);
   }, []);
-
-  useEffect(() => {
-    const admins = users.filter((u) => u.role === "admin");
-    setAdminCount(admins.length);
-  }, [search, users.length]);
 
   useEffect(() => {
     const trackClick = () => console.log("Click tracciato sulla pagina");
@@ -41,6 +35,10 @@ export function UserDashboard() {
       u.name.toLowerCase().includes(search.toLowerCase()),
     );
   }, [search, users]);
+
+  const adminCount: number = users.filter(
+    (u: User) => u.role === "admin",
+  ).length;
 
   return (
     <div>
