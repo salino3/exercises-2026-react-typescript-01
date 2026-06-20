@@ -6,6 +6,7 @@
 // Pick<T, K>: Creates a new type by taking only specific properties from another type.
 
 // Omit<T, K>: Unlike Pick, creates a type by excluding some properties.
+// Omit<> internally:  type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
 // Readonly<T>: Makes all properties immutable.
 
