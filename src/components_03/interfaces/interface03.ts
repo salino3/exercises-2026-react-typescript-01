@@ -110,3 +110,16 @@ const worker: Worker = {
   years: 27,
   status: "SUCCESS",
 };
+
+//
+interface RegisterForm {
+  email: string;
+  username: string;
+  age: number;
+}
+
+type UpdatePayloadForm = Partial<RegisterForm> & { transactionId: string };
+
+const student: UpdatePayloadForm = {
+  transactionId: "3jfYT7",
+};
